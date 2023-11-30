@@ -1,0 +1,113 @@
+﻿@using FeriaVirtual.Negocio;
+
+<!-- Agrega las metaetiquetas para hacer que la página sea responsive -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    /* Estilo para la tabla */
+    .table-container {
+        background-color: white; /* Fondo blanco para la tabla */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+@{ ViewBag.Title = "Listado de Ventas Disponibles para Comprar";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div style="position: absolute; top: 60px; left: 10px;">
+    <a href="@Url.Action("Index", "Home")" class="btn btn-sm btn-transparent" style="border: 1px solid;">Volver</a>
+</div>
+
+<div class="container">
+    <h2 class="mt-4">Listado de Ventas Disponibles</h2>
+
+    @{ List<VentaDetails> ventas = (List<VentaDetails>)ViewBag.ventasd;
+        Transporte t = new Transporte(); }
+
+    <div class="table-container">
+        <div class="table-responsive">
+            <table class="table table-striped mt-3">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <th>ID Venta</th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                        <th>Fecha Venta</th>
+                        <th>Estado</th>
+                        <th>Tipo</th>
+                        <th>Cliente</th>
+                        <th>Productor</th>
+                        <th>ID Transporte</th>
+                        <th>Solicitar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var venta in ventas)
+                    {
+                    <tr>
+                        <td>@venta.VentaId</td>
+                        <td>@venta.ProductoNombre</td>
+                        <td>@venta.Precio</td>
+                        <td>@venta.Cantidad</td>
+                        <td>@venta.TotalVenta</td>
+                        <td>@venta.FechaVenta</td>
+                        <td>
+                            @if (venta.EstadoVentaId == 1)
+                            {
+                    <span class="badge badge-success">Aprobada</span> }
+                else if (venta.EstadoVentaId == 3)
+                {
+                    <span class="badge badge-success">Completada</span> }
+                else if (venta.EstadoVentaId == 2)
+                {
+                    <span class="badge badge-secondary">En Tránsito</span> }
+                else if (venta.EstadoVentaId == 0)
+                {
+                    <span class="badge badge-danger">Cancelada</span> }
+                else if (venta.EstadoVentaId == 4)
+                {
+                    <span class="badge badge-warning">Pendiente</span> }
+                else
+                {
+                    <span class="badge badge-secondary">Desconocido</span>}
+                        </td>
+                        <td>@venta.TipoVenta</td>
+                        @if (venta.ClienteId != null)
+                        {
+                    <td>@venta.ClienteId</td> }
+                                    else
+                                    {
+                    <td>Sin Cliente</td>}
+                        <td>@venta.ProductorId</td>
+                        @if (venta.TransporteId != null)
+                        {
+                    <td>@venta.TransporteId</td>
+ }
+                else
+                {
+                    <td>Sin Transporte</td>}
+
+                        <td>
+                            @Html.ActionLink("Solicitar", "Details", new { id = venta.VentaId }, new { onclick = "return confirm('¿Está seguro que desea comentar la compra de este saldo?');" })
+                        </td> }
+
+
+
+                    </tr>
+}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

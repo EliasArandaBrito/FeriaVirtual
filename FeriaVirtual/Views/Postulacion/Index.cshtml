@@ -1,0 +1,93 @@
+﻿@using FeriaVirtual.Negocio;
+
+<!-- Agrega las metaetiquetas para hacer que la página sea responsive -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    /* Estilo para la tabla */
+    .table-container {
+        background-color: white; /* Fondo blanco para la tabla */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<div style="position: absolute; top: 60px; left: 10px;">
+    <a href="@Url.Action("Index", "Home")" class="btn btn-sm btn-transparent" style="border: 1px solid;">Volver</a>
+</div>
+
+@{
+    ViewBag.Title = "Listado de Postulaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 class="mt-4">Listado de Postulaciones</h2>
+
+    @{
+        List<Postulacion> postulaciones = (List<Postulacion>)ViewBag.Postulaciones;
+    }
+
+    <div class="table-container">
+        <div class="table-responsive">
+            <table class="table table-striped mt-3">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Fecha de Cosecha</th>
+                        <th>ID de Contrato</th>
+                        <th>ID de Productor</th>
+                        <th>Seleccionado</th>
+                        <th>Cancelar</th>
+              
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var postulacion in postulaciones)
+                    {
+                    <tr>
+                        <td>@postulacion.Precio</td>
+                        <td>@postulacion.Cantidad</td>
+                        <td>@postulacion.Fechacosecha</td>
+                        <td>@postulacion.Contratoid</td>
+                        <td>@postulacion.Productorid</td>
+                        <td>@postulacion.Selected</td>
+
+                            @if (postulacion.Selected == 1){
+                            <td>Acción No Disponible</td>
+                            }
+                            else{
+                            <td> @Html.ActionLink("Cancelar", "Delete", "Postulacion", new { id = postulacion.Postulacionid }, new { onclick = "return confirm('¿Estás seguro de eliminar esta postulación?');" })</td>
+                            }
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mt-4">
+    <!-- Si se requiere agregar un enlace para crear nuevas postulaciones, se puede colocar aquí -->
+</div>
+
+@if (TempData["PostulacionAgregada"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["PostulacionAgregada"]
+    </div>
+}
+@if (TempData["PostulacionEliminada"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["PostulacionEliminada"]
+    </div>
+}

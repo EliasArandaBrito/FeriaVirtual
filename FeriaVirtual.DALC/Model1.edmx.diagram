@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ce39916af4df4c6cb71e24c13236b7be" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="Model.CLIENTE" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CONTRATOS" Width="1.5" PointX="8.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ESTADOCONTRATO" Width="1.5" PointX="6" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ESTADOVENTA" Width="1.5" PointX="9.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MEDIOTRANSPORTE" Width="1.5" PointX="7.5" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PAGO" Width="1.5" PointX="14.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.POSTULACION" Width="1.5" PointX="10.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PRODUCTOR" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PRODUCTOS" Width="1.5" PointX="7.5" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SUBASTA" Width="1.5" PointX="14.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SUBASTA_MEDIO" Width="1.5" PointX="18.5" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TIPOSUSUARIO" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TRANSPORTE" Width="1.5" PointX="9.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TRANSPORTISTA" Width="1.5" PointX="5.25" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USUARIOS" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.VENTA_PRODUCTO" Width="1.5" PointX="17.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.VENTAS" Width="1.5" PointX="12" PointY="12.25" IsExpanded="true" />
+        <AssociationConnector Association="Model.CLIENTE_USUARIOS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.VENTAS_CLIENTE_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CONTRATOS_ESTADOCONTRATO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CONTRATOS_USUARIOS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.POSTULACION_CONTRATOS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.VENTAS_ESTADOVENTA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.MT_TRANSPORTE_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.MT_TRANSPORTISTA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SM_MEDIOTRANSPORTE_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.PAGO_USUARIOS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.PAGO_VENTAS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.POSTULACION_PRODUCTOR_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.PRODUCTOR_USUARIOS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.PRODUCTOS_PRODUCTOR_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.VENTAS_PRODUCTOR_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.VENTA_PRODUCTO_PRODUCTOS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SM_SUBASTA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SUBASTA_VENTAS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.USUARIOS_TIPOSUSUARIO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.VENTAS_TRANSPORTE_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TRANSPORTISTA_USUARIOS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.VENTA_PRODUCTO_VENTAS_FK" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

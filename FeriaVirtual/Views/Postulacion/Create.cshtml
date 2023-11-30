@@ -1,0 +1,93 @@
+﻿
+<h2>Create para contrato ID @Session["ContratoID"]</h2>
+
+@model FeriaVirtual.Negocio.Postulacion
+
+@{
+    ViewBag.Title = "Crear Postulación";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<style>
+    /* Estilos de la página */
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    select {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+    }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            dateFormat: 'yy-mm-dd' // Formato de fecha deseado
+        });
+    });
+</script>
+
+
+<div style="position: absolute; top: 60px; left: 10px;">
+    <a href="@Url.Action("Index", "Postulacion")" class="btn btn-sm btn-transparent" style="border: 1px solid;">Volver</a>
+</div>
+
+<div class="container">
+    <h2>Crear Postulación</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.LabelFor(model => model.Precio)
+        @Html.TextBoxFor(model => model.Precio)
+
+        @Html.LabelFor(model => model.Cantidad)
+        @Html.TextBoxFor(model => model.Cantidad)
+
+        @Html.LabelFor(model => model.Fechacosecha)
+        @Html.TextBoxFor(model => model.Fechacosecha, new { @id = "datepicker" })
+
+
+        @Html.HiddenFor(model => model.Contratoid, new { Value = (decimal)Session["ContratoID"] })
+
+        @Html.HiddenFor(model => model.Productorid, new { Value = (decimal)Session["UserID"] })
+
+        @Html.HiddenFor(model => model.Selected, new { Value = 0 })
+
+        <button>Guardar</button>
+    }
+</div>
+
+@TempData["mensaje"]

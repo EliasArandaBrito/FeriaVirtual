@@ -1,0 +1,2057 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="CLIENTEID" />
+          </Key>
+          <Property Name="CLIENTEID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="TIPOCLIENTE" Type="varchar2" MaxLength="20" />
+          <Property Name="DIRECCION" Type="varchar2" MaxLength="200" />
+          <Property Name="TELEFONO" Type="varchar2" MaxLength="50" />
+          <Property Name="CORREO" Type="varchar2" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="CONTRATOS">
+          <Key>
+            <PropertyRef Name="CONTRATOID" />
+          </Key>
+          <Property Name="CONTRATOID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FECHAINICIO" Type="date" Nullable="false" />
+          <Property Name="FECHAFINALIZACION" Type="date" Nullable="false" />
+          <Property Name="TIPOCONTRATO" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="ESTADOCONTRATOID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DEMANDA" Type="varchar2" MaxLength="100" />
+          <Property Name="CANTIDAD" Type="number" Precision="38" Scale="0" />
+          <Property Name="USUARIOID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PUBLISHED" Type="number" Precision="1" Scale="0" />
+        </EntityType>
+        <EntityType Name="ESTADOCONTRATO">
+          <Key>
+            <PropertyRef Name="ESTADOCONTRATOID" />
+          </Key>
+          <Property Name="ESTADOCONTRATOID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBREESTADO" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ESTADOVENTA">
+          <Key>
+            <PropertyRef Name="ESTADOVENTAID" />
+          </Key>
+          <Property Name="ESTADOVENTAID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBREESTADOVENTA" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MEDIOTRANSPORTE">
+          <Key>
+            <PropertyRef Name="MEDIOID" />
+          </Key>
+          <Property Name="MEDIOID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PATENTE" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="ANCHO" Type="float" Precision="126" Scale="0" Nullable="false" />
+          <Property Name="LARGO" Type="float" Precision="126" Scale="0" Nullable="false" />
+          <Property Name="ALTO" Type="float" Precision="126" Scale="0" Nullable="false" />
+          <Property Name="CAPACIDAD" Type="float" Precision="126" Scale="0" />
+          <Property Name="REFRIGERADO" Type="number" Precision="1" Scale="0" />
+          <Property Name="PRECIO" Type="float" Precision="126" Scale="0" />
+          <Property Name="TRANSPORTISTAID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PAGO">
+          <Key>
+            <PropertyRef Name="PAGOID" />
+          </Key>
+          <Property Name="PAGOID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FECHA_PAGO" Type="date" Nullable="false" />
+          <Property Name="PAGO" Type="float" Precision="126" Scale="0" Nullable="false" />
+          <Property Name="VENTAID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="USUARIOID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="POSTULACION">
+          <Key>
+            <PropertyRef Name="POSTULACIONID" />
+          </Key>
+          <Property Name="POSTULACIONID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRECIO" Type="float" Precision="126" Scale="0" />
+          <Property Name="CANTIDAD" Type="number" Precision="38" Scale="0" />
+          <Property Name="FECHACOSECHA" Type="date" />
+          <Property Name="CONTRATOID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCTORID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SELECTED" Type="number" Precision="1" Scale="0" />
+        </EntityType>
+        <EntityType Name="PRODUCTOR">
+          <Key>
+            <PropertyRef Name="PRODUCTORID" />
+          </Key>
+          <Property Name="PRODUCTORID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="DIRECCION" Type="varchar2" MaxLength="200" />
+          <Property Name="TELEFONO" Type="varchar2" MaxLength="50" />
+          <Property Name="CORREO" Type="varchar2" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PRODUCTOS">
+          <Key>
+            <PropertyRef Name="PRODUCTOID" />
+          </Key>
+          <Property Name="PRODUCTOID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="PRECIO" Type="float" Precision="126" Scale="0" Nullable="false" />
+          <Property Name="STOCK" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCTORID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SUBASTA">
+          <Key>
+            <PropertyRef Name="SUBASTAID" />
+          </Key>
+          <Property Name="SUBASTAID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="VENTAID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FECHAINICIO" Type="date" />
+          <Property Name="FECHATERMINO" Type="date" />
+          <Property Name="ANCHO_MIN" Type="float" Precision="126" Scale="0" />
+          <Property Name="LARGO_MIN" Type="float" Precision="126" Scale="0" />
+          <Property Name="ALTO_MIN" Type="float" Precision="126" Scale="0" />
+          <Property Name="CAPACIDAD" Type="float" Precision="126" Scale="0" />
+          <Property Name="REFRIGERADO" Type="number" Precision="1" Scale="0" />
+          <Property Name="FINISHED" Type="number" Precision="1" Scale="0" />
+        </EntityType>
+        <EntityType Name="SUBASTA_MEDIO">
+          <Key>
+            <PropertyRef Name="MEDIOID" />
+            <PropertyRef Name="SUBASTAID" />
+          </Key>
+          <Property Name="MEDIOID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SUBASTAID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SELECTED" Type="number" Precision="1" Scale="0" />
+        </EntityType>
+        <EntityType Name="TIPOSUSUARIO">
+          <Key>
+            <PropertyRef Name="TIPOUSUARIOID" />
+          </Key>
+          <Property Name="TIPOUSUARIOID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRETIPO" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRANSPORTE">
+          <Key>
+            <PropertyRef Name="TRANSPORTEID" />
+          </Key>
+          <Property Name="TRANSPORTEID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TIPOTRANSPORTE" Type="varchar2" MaxLength="50" />
+          <Property Name="FECHATRANSPORTE" Type="date" />
+          <Property Name="ORIGEN" Type="varchar2" MaxLength="100" />
+          <Property Name="DESTINO" Type="varchar2" MaxLength="100" />
+          <Property Name="ESTADOTRANSPORTE" Type="varchar2" MaxLength="50" />
+          <Property Name="MEDIOID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRANSPORTISTA">
+          <Key>
+            <PropertyRef Name="TRANSPORTISTAID" />
+          </Key>
+          <Property Name="TRANSPORTISTAID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="DIRECCION" Type="varchar2" MaxLength="200" />
+          <Property Name="TELEFONO" Type="varchar2" MaxLength="50" />
+          <Property Name="CORREO" Type="varchar2" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="USUARIOID" />
+          </Key>
+          <Property Name="USUARIOID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="APELLIDO" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="CORREOELECTRONICO" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="CONTRASENA" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="TIPOUSUARIOID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DIRECCION" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="TELEFONO" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VENTA_PRODUCTO">
+          <Key>
+            <PropertyRef Name="VENTAID" />
+            <PropertyRef Name="PRODUCTOID" />
+          </Key>
+          <Property Name="VENTAID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCTOID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CANTIDAD" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="VENTAS">
+          <Key>
+            <PropertyRef Name="VENTAID" />
+          </Key>
+          <Property Name="VENTAID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TIPOVENTA" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="FECHAVENTA" Type="date" Nullable="false" />
+          <Property Name="TOTALVENTA" Type="float" Precision="126" Scale="0" Nullable="false" />
+          <Property Name="ESTADOVENTAID" Type="number" Precision="38" Scale="0" />
+          <Property Name="TRANSPORTEID" Type="number" Precision="38" Scale="0" />
+          <Property Name="PRODUCTORID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CLIENTEID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <Association Name="CLIENTE_USUARIOS_FK">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="USUARIOID" />
+            </Principal>
+            <Dependent Role="CLIENTE">
+              <PropertyRef Name="CLIENTEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CONTRATOS_ESTADOCONTRATO_FK">
+          <End Role="ESTADOCONTRATO" Type="Self.ESTADOCONTRATO" Multiplicity="1" />
+          <End Role="CONTRATOS" Type="Self.CONTRATOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTADOCONTRATO">
+              <PropertyRef Name="ESTADOCONTRATOID" />
+            </Principal>
+            <Dependent Role="CONTRATOS">
+              <PropertyRef Name="ESTADOCONTRATOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CONTRATOS_USUARIOS_FK">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="CONTRATOS" Type="Self.CONTRATOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="USUARIOID" />
+            </Principal>
+            <Dependent Role="CONTRATOS">
+              <PropertyRef Name="USUARIOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MT_TRANSPORTE_FK">
+          <End Role="MEDIOTRANSPORTE" Type="Self.MEDIOTRANSPORTE" Multiplicity="1" />
+          <End Role="TRANSPORTE" Type="Self.TRANSPORTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDIOTRANSPORTE">
+              <PropertyRef Name="MEDIOID" />
+            </Principal>
+            <Dependent Role="TRANSPORTE">
+              <PropertyRef Name="MEDIOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MT_TRANSPORTISTA_FK">
+          <End Role="TRANSPORTISTA" Type="Self.TRANSPORTISTA" Multiplicity="1" />
+          <End Role="MEDIOTRANSPORTE" Type="Self.MEDIOTRANSPORTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRANSPORTISTA">
+              <PropertyRef Name="TRANSPORTISTAID" />
+            </Principal>
+            <Dependent Role="MEDIOTRANSPORTE">
+              <PropertyRef Name="TRANSPORTISTAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PAGO_USUARIOS_FK">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="PAGO" Type="Self.PAGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="USUARIOID" />
+            </Principal>
+            <Dependent Role="PAGO">
+              <PropertyRef Name="USUARIOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PAGO_VENTAS_FK">
+          <End Role="VENTAS" Type="Self.VENTAS" Multiplicity="1" />
+          <End Role="PAGO" Type="Self.PAGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VENTAS">
+              <PropertyRef Name="VENTAID" />
+            </Principal>
+            <Dependent Role="PAGO">
+              <PropertyRef Name="VENTAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="POSTULACION_CONTRATOS_FK">
+          <End Role="CONTRATOS" Type="Self.CONTRATOS" Multiplicity="1" />
+          <End Role="POSTULACION" Type="Self.POSTULACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTRATOS">
+              <PropertyRef Name="CONTRATOID" />
+            </Principal>
+            <Dependent Role="POSTULACION">
+              <PropertyRef Name="CONTRATOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="POSTULACION_PRODUCTOR_FK">
+          <End Role="PRODUCTOR" Type="Self.PRODUCTOR" Multiplicity="1" />
+          <End Role="POSTULACION" Type="Self.POSTULACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOR">
+              <PropertyRef Name="PRODUCTORID" />
+            </Principal>
+            <Dependent Role="POSTULACION">
+              <PropertyRef Name="PRODUCTORID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCTOR_USUARIOS_FK">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="PRODUCTOR" Type="Self.PRODUCTOR" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="USUARIOID" />
+            </Principal>
+            <Dependent Role="PRODUCTOR">
+              <PropertyRef Name="PRODUCTORID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCTOS_PRODUCTOR_FK">
+          <End Role="PRODUCTOR" Type="Self.PRODUCTOR" Multiplicity="1" />
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOR">
+              <PropertyRef Name="PRODUCTORID" />
+            </Principal>
+            <Dependent Role="PRODUCTOS">
+              <PropertyRef Name="PRODUCTORID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SM_MEDIOTRANSPORTE_FK">
+          <End Role="MEDIOTRANSPORTE" Type="Self.MEDIOTRANSPORTE" Multiplicity="1" />
+          <End Role="SUBASTA_MEDIO" Type="Self.SUBASTA_MEDIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDIOTRANSPORTE">
+              <PropertyRef Name="MEDIOID" />
+            </Principal>
+            <Dependent Role="SUBASTA_MEDIO">
+              <PropertyRef Name="MEDIOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SM_SUBASTA_FK">
+          <End Role="SUBASTA" Type="Self.SUBASTA" Multiplicity="1" />
+          <End Role="SUBASTA_MEDIO" Type="Self.SUBASTA_MEDIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUBASTA">
+              <PropertyRef Name="SUBASTAID" />
+            </Principal>
+            <Dependent Role="SUBASTA_MEDIO">
+              <PropertyRef Name="SUBASTAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SUBASTA_VENTAS_FK">
+          <End Role="VENTAS" Type="Self.VENTAS" Multiplicity="1" />
+          <End Role="SUBASTA" Type="Self.SUBASTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VENTAS">
+              <PropertyRef Name="VENTAID" />
+            </Principal>
+            <Dependent Role="SUBASTA">
+              <PropertyRef Name="VENTAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TRANSPORTISTA_USUARIOS_FK">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="TRANSPORTISTA" Type="Self.TRANSPORTISTA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="USUARIOID" />
+            </Principal>
+            <Dependent Role="TRANSPORTISTA">
+              <PropertyRef Name="TRANSPORTISTAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USUARIOS_TIPOSUSUARIO_FK">
+          <End Role="TIPOSUSUARIO" Type="Self.TIPOSUSUARIO" Multiplicity="1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOSUSUARIO">
+              <PropertyRef Name="TIPOUSUARIOID" />
+            </Principal>
+            <Dependent Role="USUARIOS">
+              <PropertyRef Name="TIPOUSUARIOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VENTA_PRODUCTO_PRODUCTOS_FK">
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="1" />
+          <End Role="VENTA_PRODUCTO" Type="Self.VENTA_PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOS">
+              <PropertyRef Name="PRODUCTOID" />
+            </Principal>
+            <Dependent Role="VENTA_PRODUCTO">
+              <PropertyRef Name="PRODUCTOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VENTA_PRODUCTO_VENTAS_FK">
+          <End Role="VENTAS" Type="Self.VENTAS" Multiplicity="1" />
+          <End Role="VENTA_PRODUCTO" Type="Self.VENTA_PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VENTAS">
+              <PropertyRef Name="VENTAID" />
+            </Principal>
+            <Dependent Role="VENTA_PRODUCTO">
+              <PropertyRef Name="VENTAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VENTAS_CLIENTE_FK">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+          <End Role="VENTAS" Type="Self.VENTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="CLIENTEID" />
+            </Principal>
+            <Dependent Role="VENTAS">
+              <PropertyRef Name="CLIENTEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VENTAS_ESTADOVENTA_FK">
+          <End Role="ESTADOVENTA" Type="Self.ESTADOVENTA" Multiplicity="0..1" />
+          <End Role="VENTAS" Type="Self.VENTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTADOVENTA">
+              <PropertyRef Name="ESTADOVENTAID" />
+            </Principal>
+            <Dependent Role="VENTAS">
+              <PropertyRef Name="ESTADOVENTAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VENTAS_PRODUCTOR_FK">
+          <End Role="PRODUCTOR" Type="Self.PRODUCTOR" Multiplicity="1" />
+          <End Role="VENTAS" Type="Self.VENTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOR">
+              <PropertyRef Name="PRODUCTORID" />
+            </Principal>
+            <Dependent Role="VENTAS">
+              <PropertyRef Name="PRODUCTORID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VENTAS_TRANSPORTE_FK">
+          <End Role="TRANSPORTE" Type="Self.TRANSPORTE" Multiplicity="0..1" />
+          <End Role="VENTAS" Type="Self.VENTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRANSPORTE">
+              <PropertyRef Name="TRANSPORTEID" />
+            </Principal>
+            <Dependent Role="VENTAS">
+              <PropertyRef Name="TRANSPORTEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="DELETE_CONTRATO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_CONTRATOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="DELETE_MEDIOTRANSPORTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_MEDIOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="DELETE_PAGO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_PAGOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="DELETE_POSTULACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_POSTULACIONID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="DELETE_PRODUCTOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_PRODUCTOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="DELETE_SUBASTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_SUBASTAID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="DELETE_SUBASTA_MEDIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_MEDIOID" Type="number" Mode="In" />
+          <Parameter Name="P_SUBASTAID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="DELETE_TRANSPORTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_TRANSPORTEID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="DELETE_USUARIOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_USUARIOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="DELETE_VENTA_PRODUCTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_VENTAID" Type="number" Mode="In" />
+          <Parameter Name="P_PRODUCTOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="DELETE_VENTAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_VENTAID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="FINISH_SUBASTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_SUBASTAID" Type="number" Mode="In" />
+          <Parameter Name="P_FINISHED" Type="number" Mode="In" />
+        </Function>
+        <Function Name="GET_ALL_CLIENTES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" />
+        <Function Name="GET_ALL_CONTRATOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" />
+        <Function Name="GET_ALL_MEDIOTRANSPORTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" />
+        <Function Name="GET_ALL_PAGOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" />
+        <Function Name="GET_ALL_POSTULACIONES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" />
+        <Function Name="GET_ALL_PRODUCTORES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" />
+        <Function Name="GET_ALL_PRODUCTOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" />
+        <Function Name="GET_ALL_SUBASTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" />
+        <Function Name="GET_ALL_SUBASTA_MEDIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" />
+        <Function Name="GET_ALL_SUBMEDIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" />
+        <Function Name="GET_ALL_TRANSPORTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" />
+        <Function Name="GET_ALL_TRANSPORTISTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" />
+        <Function Name="GET_ALL_USUARIOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" />
+        <Function Name="GET_ALL_VENTA_PRODUCTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" />
+        <Function Name="GET_ALL_VENTAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" />
+        <Function Name="GET_CLIENTE_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_CLIENTEID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="GET_CONTRATO_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_CONTRATO_ID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="GET_MEDIOTRANSPORTE_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_MEDIOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="GET_PAGO_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_PAGOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="GET_POSTULACION_BY_CONTRACT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_CONTRATOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="GET_POSTULACION_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_POSTULACIONID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="GET_POSTULACION_BY_PRODUCTOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_PRODUCTORID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="GET_PRODUCTO_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_PRODUCTOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="GET_PRODUCTOR_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_PRODUCTORID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="GET_PRODUCTOS_BY_PRODUCTOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_PRODUCTORID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="GET_PUBLISHED_CONTRATOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" />
+        <Function Name="GET_SELECTED_POSTULACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_CONTRATOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="GET_SUBASTA_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_SUBASTAID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="GET_SUBASTA_MEDIO_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_MEDIOID" Type="number" Mode="In" />
+          <Parameter Name="P_SUBASTAID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="GET_TRANSPORTE_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_TRANSPORTEID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="GET_TRANSPORTISTA_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_TRANSPORTISTAID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="GET_UNFINISHED_SUBASTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" />
+        <Function Name="GET_USUARIO_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_USUARIOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="GET_VENTA_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_VENTAID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="GET_VENTA_BY_TYPE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_TIPOVENTA" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="GET_VENTA_PRODUCTO_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_VENTAID" Type="number" Mode="In" />
+          <Parameter Name="P_PRODUCTOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="INSERT_CONTRATO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_FECHAINICIO" Type="date" Mode="In" />
+          <Parameter Name="P_FECHAFINALIZACION" Type="date" Mode="In" />
+          <Parameter Name="P_TIPOCONTRATO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_ESTADOCONTRATOID" Type="number" Mode="In" />
+          <Parameter Name="P_DEMANDA" Type="varchar2" Mode="In" />
+          <Parameter Name="P_CANTIDAD" Type="number" Mode="In" />
+          <Parameter Name="P_USUARIOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="INSERT_MEDIOTRANSPORTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_PATENTE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_ANCHO" Type="float" Mode="In" />
+          <Parameter Name="P_LARGO" Type="float" Mode="In" />
+          <Parameter Name="P_ALTO" Type="float" Mode="In" />
+          <Parameter Name="P_PRECIO" Type="float" Mode="In" />
+          <Parameter Name="P_CAPACIDAD" Type="float" Mode="In" />
+          <Parameter Name="P_REFRIGERADO" Type="number" Mode="In" />
+          <Parameter Name="P_TRANSPORTISTAID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="INSERT_PAGO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_FECHA_PAGO" Type="date" Mode="In" />
+          <Parameter Name="P_PAGO" Type="float" Mode="In" />
+          <Parameter Name="P_VENTAID" Type="number" Mode="In" />
+          <Parameter Name="P_USUARIOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="INSERT_POSTULACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_PRECIO" Type="float" Mode="In" />
+          <Parameter Name="P_CANTIDAD" Type="number" Mode="In" />
+          <Parameter Name="P_FECHACOSECHA" Type="date" Mode="In" />
+          <Parameter Name="P_CONTRATOID" Type="number" Mode="In" />
+          <Parameter Name="P_PRODUCTORID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="INSERT_PRODUCTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_NOMBRE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_PRECIO" Type="float" Mode="In" />
+          <Parameter Name="P_STOCK" Type="number" Mode="In" />
+          <Parameter Name="P_PRODUCTORID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="INSERT_SUBASTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_VENTAID" Type="number" Mode="In" />
+          <Parameter Name="P_FECHAINICIO" Type="date" Mode="In" />
+          <Parameter Name="P_FECHATERMINO" Type="date" Mode="In" />
+          <Parameter Name="P_ANCHO" Type="float" Mode="In" />
+          <Parameter Name="P_LARGO" Type="float" Mode="In" />
+          <Parameter Name="P_ALTO" Type="float" Mode="In" />
+          <Parameter Name="P_CAPACIDAD" Type="float" Mode="In" />
+          <Parameter Name="P_REFRIGERADO" Type="number" Mode="In" />
+        </Function>
+        <Function Name="INSERT_SUBASTA_MEDIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_MEDIOID" Type="number" Mode="In" />
+          <Parameter Name="P_SUBASTAID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="INSERT_TRANSPORTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_TIPOTRANSPORTE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_FECHATRANSPORTE" Type="date" Mode="In" />
+          <Parameter Name="P_ORIGEN" Type="varchar2" Mode="In" />
+          <Parameter Name="P_DESTINO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_ESTADOTRANSPORTE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_MEDIOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="INSERT_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_NOMBRE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_APELLIDO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_CORREOELECTRONICO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_CONTRASENA" Type="varchar2" Mode="In" />
+          <Parameter Name="P_TIPOUSUARIOID" Type="number" Mode="In" />
+          <Parameter Name="P_DIRECCION" Type="varchar2" Mode="In" />
+          <Parameter Name="P_TELEFONO" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="INSERT_VENTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_FECHAVENTA" Type="date" Mode="In" />
+          <Parameter Name="P_TIPOVENTA" Type="varchar2" Mode="In" />
+          <Parameter Name="P_TOTALVENTA" Type="float" Mode="In" />
+          <Parameter Name="P_ESTADOVENTAID" Type="number" Mode="In" />
+          <Parameter Name="P_TRANSPORTEID" Type="number" Mode="In" />
+          <Parameter Name="P_PRODUCTORID" Type="number" Mode="In" />
+          <Parameter Name="P_CLIENTEID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="INSERT_VENTA_PRODUCTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_VENTAID" Type="number" Mode="In" />
+          <Parameter Name="P_PRODUCTOID" Type="number" Mode="In" />
+          <Parameter Name="P_CANTIDAD" Type="number" Mode="In" />
+        </Function>
+        <Function Name="LOGIN_USUARIO_WITH_RETURN_USERTYPE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" ReturnType="number">
+          <Parameter Name="P_CORREOELECTRONICO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_CONTRASENA" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="LOGIN_USUARIO_WITH_TYPE_CHECK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN" ReturnType="number">
+          <Parameter Name="P_CORREOELECTRONICO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_CONTRASENA" Type="varchar2" Mode="In" />
+          <Parameter Name="P_EXPECTED_TIPOUSUARIOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="PUBLISH_CONTRATO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_CONTRATOID" Type="number" Mode="In" />
+          <Parameter Name="P_PUBLISHED" Type="number" Mode="In" />
+        </Function>
+        <Function Name="SET_SELECTED_POSTULACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_POSTULACIONID" Type="number" Mode="In" />
+          <Parameter Name="P_SELECTED" Type="number" Mode="In" />
+        </Function>
+        <Function Name="UPDATE_CONTRATO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_CONTRATOID" Type="number" Mode="In" />
+          <Parameter Name="P_FECHAINICIO" Type="date" Mode="In" />
+          <Parameter Name="P_FECHAFINALIZACION" Type="date" Mode="In" />
+          <Parameter Name="P_TIPOCONTRATO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_ESTADOCONTRATOID" Type="number" Mode="In" />
+          <Parameter Name="P_DEMANDA" Type="varchar2" Mode="In" />
+          <Parameter Name="P_CANTIDAD" Type="number" Mode="In" />
+          <Parameter Name="P_USUARIOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="UPDATE_MEDIOTRANSPORTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_MEDIOID" Type="number" Mode="In" />
+          <Parameter Name="P_PATENTE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_ANCHO" Type="float" Mode="In" />
+          <Parameter Name="P_LARGO" Type="float" Mode="In" />
+          <Parameter Name="P_ALTO" Type="float" Mode="In" />
+          <Parameter Name="P_CAPACIDAD" Type="float" Mode="In" />
+          <Parameter Name="P_REFRIGERADO" Type="number" Mode="In" />
+          <Parameter Name="P_PRECIO" Type="float" Mode="In" />
+          <Parameter Name="P_TRANSPORTISTAID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="UPDATE_PAGO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_PAGOID" Type="number" Mode="In" />
+          <Parameter Name="P_FECHA_PAGO" Type="date" Mode="In" />
+          <Parameter Name="P_PAGO" Type="float" Mode="In" />
+          <Parameter Name="P_VENTAID" Type="number" Mode="In" />
+          <Parameter Name="P_USUARIOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="UPDATE_POSTULACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_POSTULACIONID" Type="number" Mode="In" />
+          <Parameter Name="P_PRECIO" Type="float" Mode="In" />
+          <Parameter Name="P_CANTIDAD" Type="number" Mode="In" />
+          <Parameter Name="P_FECHACOSECHA" Type="date" Mode="In" />
+          <Parameter Name="P_CONTRATOID" Type="number" Mode="In" />
+          <Parameter Name="P_PRODUCTORID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="UPDATE_PRODUCTOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_PRODUCTOID" Type="number" Mode="In" />
+          <Parameter Name="P_NOMBRE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_PRECIO" Type="float" Mode="In" />
+          <Parameter Name="P_STOCK" Type="number" Mode="In" />
+        </Function>
+        <Function Name="UPDATE_SUBASTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_SUBASTAID" Type="number" Mode="In" />
+          <Parameter Name="P_VENTAID" Type="number" Mode="In" />
+          <Parameter Name="P_FECHAINICIO" Type="date" Mode="In" />
+          <Parameter Name="P_FECHATERMINO" Type="date" Mode="In" />
+          <Parameter Name="P_ANCHO" Type="float" Mode="In" />
+          <Parameter Name="P_LARGO" Type="float" Mode="In" />
+          <Parameter Name="P_ALTO" Type="float" Mode="In" />
+          <Parameter Name="P_CAPACIDAD" Type="float" Mode="In" />
+          <Parameter Name="P_REFRIGERADO" Type="number" Mode="In" />
+        </Function>
+        <Function Name="UPDATE_SUBASTA_MEDIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_MEDIOID" Type="number" Mode="In" />
+          <Parameter Name="P_SUBASTAID" Type="number" Mode="In" />
+          <Parameter Name="P_SELECTED" Type="number" Mode="In" />
+        </Function>
+        <Function Name="UPDATE_TRANSPORTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_TRANSPORTEID" Type="number" Mode="In" />
+          <Parameter Name="P_TIPOTRANSPORTE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_FECHATRANSPORTE" Type="date" Mode="In" />
+          <Parameter Name="P_ORIGEN" Type="varchar2" Mode="In" />
+          <Parameter Name="P_DESTINO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_ESTADOTRANSPORTE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_MEDIOID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="UPDATE_USUARIOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_USUARIOID" Type="number" Mode="In" />
+          <Parameter Name="P_NOMBRE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_APELLIDO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_CORREOELECTRONICO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_CONTRASENA" Type="varchar2" Mode="In" />
+          <Parameter Name="P_TIPOUSUARIOID" Type="number" Mode="In" />
+          <Parameter Name="P_DIRECCION" Type="varchar2" Mode="In" />
+          <Parameter Name="P_TELEFONO" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="UPDATE_VENTAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ADMIN">
+          <Parameter Name="P_VENTAID" Type="number" Mode="In" />
+          <Parameter Name="P_TIPOVENTA" Type="varchar2" Mode="In" />
+          <Parameter Name="P_FECHAVENTA" Type="date" Mode="In" />
+          <Parameter Name="P_TOTALVENTA" Type="float" Mode="In" />
+          <Parameter Name="P_ESTADOVENTAID" Type="number" Mode="In" />
+          <Parameter Name="P_TRANSPORTEID" Type="number" Mode="In" />
+          <Parameter Name="P_PRODUCTORID" Type="number" Mode="In" />
+          <Parameter Name="P_CLIENTEID" Type="number" Mode="In" />
+        </Function>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="CONTRATOS" EntityType="Self.CONTRATOS" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="ESTADOCONTRATO" EntityType="Self.ESTADOCONTRATO" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="ESTADOVENTA" EntityType="Self.ESTADOVENTA" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="MEDIOTRANSPORTE" EntityType="Self.MEDIOTRANSPORTE" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="PAGO" EntityType="Self.PAGO" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="POSTULACION" EntityType="Self.POSTULACION" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="PRODUCTOR" EntityType="Self.PRODUCTOR" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="PRODUCTOS" EntityType="Self.PRODUCTOS" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="SUBASTA" EntityType="Self.SUBASTA" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="SUBASTA_MEDIO" EntityType="Self.SUBASTA_MEDIO" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="TIPOSUSUARIO" EntityType="Self.TIPOSUSUARIO" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="TRANSPORTE" EntityType="Self.TRANSPORTE" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="TRANSPORTISTA" EntityType="Self.TRANSPORTISTA" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="VENTA_PRODUCTO" EntityType="Self.VENTA_PRODUCTO" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="VENTAS" EntityType="Self.VENTAS" Schema="ADMIN" store:Type="Tables" />
+          <AssociationSet Name="CLIENTE_USUARIOS_FK" Association="Self.CLIENTE_USUARIOS_FK">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="CONTRATOS_ESTADOCONTRATO_FK" Association="Self.CONTRATOS_ESTADOCONTRATO_FK">
+            <End Role="ESTADOCONTRATO" EntitySet="ESTADOCONTRATO" />
+            <End Role="CONTRATOS" EntitySet="CONTRATOS" />
+          </AssociationSet>
+          <AssociationSet Name="CONTRATOS_USUARIOS_FK" Association="Self.CONTRATOS_USUARIOS_FK">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="CONTRATOS" EntitySet="CONTRATOS" />
+          </AssociationSet>
+          <AssociationSet Name="MT_TRANSPORTE_FK" Association="Self.MT_TRANSPORTE_FK">
+            <End Role="MEDIOTRANSPORTE" EntitySet="MEDIOTRANSPORTE" />
+            <End Role="TRANSPORTE" EntitySet="TRANSPORTE" />
+          </AssociationSet>
+          <AssociationSet Name="MT_TRANSPORTISTA_FK" Association="Self.MT_TRANSPORTISTA_FK">
+            <End Role="TRANSPORTISTA" EntitySet="TRANSPORTISTA" />
+            <End Role="MEDIOTRANSPORTE" EntitySet="MEDIOTRANSPORTE" />
+          </AssociationSet>
+          <AssociationSet Name="PAGO_USUARIOS_FK" Association="Self.PAGO_USUARIOS_FK">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="PAGO" EntitySet="PAGO" />
+          </AssociationSet>
+          <AssociationSet Name="PAGO_VENTAS_FK" Association="Self.PAGO_VENTAS_FK">
+            <End Role="VENTAS" EntitySet="VENTAS" />
+            <End Role="PAGO" EntitySet="PAGO" />
+          </AssociationSet>
+          <AssociationSet Name="POSTULACION_CONTRATOS_FK" Association="Self.POSTULACION_CONTRATOS_FK">
+            <End Role="CONTRATOS" EntitySet="CONTRATOS" />
+            <End Role="POSTULACION" EntitySet="POSTULACION" />
+          </AssociationSet>
+          <AssociationSet Name="POSTULACION_PRODUCTOR_FK" Association="Self.POSTULACION_PRODUCTOR_FK">
+            <End Role="PRODUCTOR" EntitySet="PRODUCTOR" />
+            <End Role="POSTULACION" EntitySet="POSTULACION" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCTOR_USUARIOS_FK" Association="Self.PRODUCTOR_USUARIOS_FK">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="PRODUCTOR" EntitySet="PRODUCTOR" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCTOS_PRODUCTOR_FK" Association="Self.PRODUCTOS_PRODUCTOR_FK">
+            <End Role="PRODUCTOR" EntitySet="PRODUCTOR" />
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+          </AssociationSet>
+          <AssociationSet Name="SM_MEDIOTRANSPORTE_FK" Association="Self.SM_MEDIOTRANSPORTE_FK">
+            <End Role="MEDIOTRANSPORTE" EntitySet="MEDIOTRANSPORTE" />
+            <End Role="SUBASTA_MEDIO" EntitySet="SUBASTA_MEDIO" />
+          </AssociationSet>
+          <AssociationSet Name="SM_SUBASTA_FK" Association="Self.SM_SUBASTA_FK">
+            <End Role="SUBASTA" EntitySet="SUBASTA" />
+            <End Role="SUBASTA_MEDIO" EntitySet="SUBASTA_MEDIO" />
+          </AssociationSet>
+          <AssociationSet Name="SUBASTA_VENTAS_FK" Association="Self.SUBASTA_VENTAS_FK">
+            <End Role="VENTAS" EntitySet="VENTAS" />
+            <End Role="SUBASTA" EntitySet="SUBASTA" />
+          </AssociationSet>
+          <AssociationSet Name="TRANSPORTISTA_USUARIOS_FK" Association="Self.TRANSPORTISTA_USUARIOS_FK">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="TRANSPORTISTA" EntitySet="TRANSPORTISTA" />
+          </AssociationSet>
+          <AssociationSet Name="USUARIOS_TIPOSUSUARIO_FK" Association="Self.USUARIOS_TIPOSUSUARIO_FK">
+            <End Role="TIPOSUSUARIO" EntitySet="TIPOSUSUARIO" />
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="VENTA_PRODUCTO_PRODUCTOS_FK" Association="Self.VENTA_PRODUCTO_PRODUCTOS_FK">
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+            <End Role="VENTA_PRODUCTO" EntitySet="VENTA_PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="VENTA_PRODUCTO_VENTAS_FK" Association="Self.VENTA_PRODUCTO_VENTAS_FK">
+            <End Role="VENTAS" EntitySet="VENTAS" />
+            <End Role="VENTA_PRODUCTO" EntitySet="VENTA_PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="VENTAS_CLIENTE_FK" Association="Self.VENTAS_CLIENTE_FK">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="VENTAS" EntitySet="VENTAS" />
+          </AssociationSet>
+          <AssociationSet Name="VENTAS_ESTADOVENTA_FK" Association="Self.VENTAS_ESTADOVENTA_FK">
+            <End Role="ESTADOVENTA" EntitySet="ESTADOVENTA" />
+            <End Role="VENTAS" EntitySet="VENTAS" />
+          </AssociationSet>
+          <AssociationSet Name="VENTAS_PRODUCTOR_FK" Association="Self.VENTAS_PRODUCTOR_FK">
+            <End Role="PRODUCTOR" EntitySet="PRODUCTOR" />
+            <End Role="VENTAS" EntitySet="VENTAS" />
+          </AssociationSet>
+          <AssociationSet Name="VENTAS_TRANSPORTE_FK" Association="Self.VENTAS_TRANSPORTE_FK">
+            <End Role="TRANSPORTE" EntitySet="TRANSPORTE" />
+            <End Role="VENTAS" EntitySet="VENTAS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="CLIENTEID" />
+          </Key>
+          <Property Name="CLIENTEID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIPOCLIENTE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CORREO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.CLIENTE_USUARIOS_FK" FromRole="CLIENTE" ToRole="USUARIOS" />
+          <NavigationProperty Name="VENTAS" Relationship="Self.VENTAS_CLIENTE_FK" FromRole="CLIENTE" ToRole="VENTAS" />
+        </EntityType>
+        <EntityType Name="CONTRATOS">
+          <Key>
+            <PropertyRef Name="CONTRATOID" />
+          </Key>
+          <Property Name="CONTRATOID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FECHAINICIO" Type="DateTime" Nullable="false" />
+          <Property Name="FECHAFINALIZACION" Type="DateTime" Nullable="false" />
+          <Property Name="TIPOCONTRATO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ESTADOCONTRATOID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DEMANDA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CANTIDAD" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="USUARIOID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PUBLISHED" Type="Int16" />
+          <NavigationProperty Name="ESTADOCONTRATO" Relationship="Self.CONTRATOS_ESTADOCONTRATO_FK" FromRole="CONTRATOS" ToRole="ESTADOCONTRATO" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.CONTRATOS_USUARIOS_FK" FromRole="CONTRATOS" ToRole="USUARIOS" />
+          <NavigationProperty Name="POSTULACION" Relationship="Self.POSTULACION_CONTRATOS_FK" FromRole="CONTRATOS" ToRole="POSTULACION" />
+        </EntityType>
+        <EntityType Name="ESTADOCONTRATO">
+          <Key>
+            <PropertyRef Name="ESTADOCONTRATOID" />
+          </Key>
+          <Property Name="ESTADOCONTRATOID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBREESTADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CONTRATOS" Relationship="Self.CONTRATOS_ESTADOCONTRATO_FK" FromRole="ESTADOCONTRATO" ToRole="CONTRATOS" />
+        </EntityType>
+        <EntityType Name="ESTADOVENTA">
+          <Key>
+            <PropertyRef Name="ESTADOVENTAID" />
+          </Key>
+          <Property Name="ESTADOVENTAID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBREESTADOVENTA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="VENTAS" Relationship="Self.VENTAS_ESTADOVENTA_FK" FromRole="ESTADOVENTA" ToRole="VENTAS" />
+        </EntityType>
+        <EntityType Name="MEDIOTRANSPORTE">
+          <Key>
+            <PropertyRef Name="MEDIOID" />
+          </Key>
+          <Property Name="MEDIOID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PATENTE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ANCHO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="LARGO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ALTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CAPACIDAD" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="REFRIGERADO" Type="Int16" />
+          <Property Name="PRECIO" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="TRANSPORTISTAID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="TRANSPORTE" Relationship="Self.MT_TRANSPORTE_FK" FromRole="MEDIOTRANSPORTE" ToRole="TRANSPORTE" />
+          <NavigationProperty Name="TRANSPORTISTA" Relationship="Self.MT_TRANSPORTISTA_FK" FromRole="MEDIOTRANSPORTE" ToRole="TRANSPORTISTA" />
+          <NavigationProperty Name="SUBASTA_MEDIO" Relationship="Self.SM_MEDIOTRANSPORTE_FK" FromRole="MEDIOTRANSPORTE" ToRole="SUBASTA_MEDIO" />
+        </EntityType>
+        <EntityType Name="PAGO">
+          <Key>
+            <PropertyRef Name="PAGOID" />
+          </Key>
+          <Property Name="PAGOID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FECHA_PAGO" Type="DateTime" Nullable="false" />
+          <Property Name="PAGO1" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="VENTAID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="USUARIOID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.PAGO_USUARIOS_FK" FromRole="PAGO" ToRole="USUARIOS" />
+          <NavigationProperty Name="VENTAS" Relationship="Self.PAGO_VENTAS_FK" FromRole="PAGO" ToRole="VENTAS" />
+        </EntityType>
+        <EntityType Name="POSTULACION">
+          <Key>
+            <PropertyRef Name="POSTULACIONID" />
+          </Key>
+          <Property Name="POSTULACIONID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRECIO" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="CANTIDAD" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="FECHACOSECHA" Type="DateTime" />
+          <Property Name="CONTRATOID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCTORID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SELECTED" Type="Int16" />
+          <NavigationProperty Name="CONTRATOS" Relationship="Self.POSTULACION_CONTRATOS_FK" FromRole="POSTULACION" ToRole="CONTRATOS" />
+          <NavigationProperty Name="PRODUCTOR" Relationship="Self.POSTULACION_PRODUCTOR_FK" FromRole="POSTULACION" ToRole="PRODUCTOR" />
+        </EntityType>
+        <EntityType Name="PRODUCTOR">
+          <Key>
+            <PropertyRef Name="PRODUCTORID" />
+          </Key>
+          <Property Name="PRODUCTORID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CORREO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="POSTULACION" Relationship="Self.POSTULACION_PRODUCTOR_FK" FromRole="PRODUCTOR" ToRole="POSTULACION" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.PRODUCTOR_USUARIOS_FK" FromRole="PRODUCTOR" ToRole="USUARIOS" />
+          <NavigationProperty Name="PRODUCTOS" Relationship="Self.PRODUCTOS_PRODUCTOR_FK" FromRole="PRODUCTOR" ToRole="PRODUCTOS" />
+          <NavigationProperty Name="VENTAS" Relationship="Self.VENTAS_PRODUCTOR_FK" FromRole="PRODUCTOR" ToRole="VENTAS" />
+        </EntityType>
+        <EntityType Name="PRODUCTOS">
+          <Key>
+            <PropertyRef Name="PRODUCTOID" />
+          </Key>
+          <Property Name="PRODUCTOID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRECIO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="STOCK" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCTORID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="PRODUCTOR" Relationship="Self.PRODUCTOS_PRODUCTOR_FK" FromRole="PRODUCTOS" ToRole="PRODUCTOR" />
+          <NavigationProperty Name="VENTA_PRODUCTO" Relationship="Self.VENTA_PRODUCTO_PRODUCTOS_FK" FromRole="PRODUCTOS" ToRole="VENTA_PRODUCTO" />
+        </EntityType>
+        <EntityType Name="SUBASTA">
+          <Key>
+            <PropertyRef Name="SUBASTAID" />
+          </Key>
+          <Property Name="SUBASTAID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="VENTAID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FECHAINICIO" Type="DateTime" />
+          <Property Name="FECHATERMINO" Type="DateTime" />
+          <Property Name="ANCHO_MIN" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="LARGO_MIN" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="ALTO_MIN" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="CAPACIDAD" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="REFRIGERADO" Type="Int16" />
+          <Property Name="FINISHED" Type="Int16" />
+          <NavigationProperty Name="SUBASTA_MEDIO" Relationship="Self.SM_SUBASTA_FK" FromRole="SUBASTA" ToRole="SUBASTA_MEDIO" />
+          <NavigationProperty Name="VENTAS" Relationship="Self.SUBASTA_VENTAS_FK" FromRole="SUBASTA" ToRole="VENTAS" />
+        </EntityType>
+        <EntityType Name="SUBASTA_MEDIO">
+          <Key>
+            <PropertyRef Name="MEDIOID" />
+            <PropertyRef Name="SUBASTAID" />
+          </Key>
+          <Property Name="MEDIOID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SUBASTAID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SELECTED" Type="Int16" />
+          <NavigationProperty Name="MEDIOTRANSPORTE" Relationship="Self.SM_MEDIOTRANSPORTE_FK" FromRole="SUBASTA_MEDIO" ToRole="MEDIOTRANSPORTE" />
+          <NavigationProperty Name="SUBASTA" Relationship="Self.SM_SUBASTA_FK" FromRole="SUBASTA_MEDIO" ToRole="SUBASTA" />
+        </EntityType>
+        <EntityType Name="TIPOSUSUARIO">
+          <Key>
+            <PropertyRef Name="TIPOUSUARIOID" />
+          </Key>
+          <Property Name="TIPOUSUARIOID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRETIPO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.USUARIOS_TIPOSUSUARIO_FK" FromRole="TIPOSUSUARIO" ToRole="USUARIOS" />
+        </EntityType>
+        <EntityType Name="TRANSPORTE">
+          <Key>
+            <PropertyRef Name="TRANSPORTEID" />
+          </Key>
+          <Property Name="TRANSPORTEID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TIPOTRANSPORTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHATRANSPORTE" Type="DateTime" />
+          <Property Name="ORIGEN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DESTINO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADOTRANSPORTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MEDIOID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="MEDIOTRANSPORTE" Relationship="Self.MT_TRANSPORTE_FK" FromRole="TRANSPORTE" ToRole="MEDIOTRANSPORTE" />
+          <NavigationProperty Name="VENTAS" Relationship="Self.VENTAS_TRANSPORTE_FK" FromRole="TRANSPORTE" ToRole="VENTAS" />
+        </EntityType>
+        <EntityType Name="TRANSPORTISTA">
+          <Key>
+            <PropertyRef Name="TRANSPORTISTAID" />
+          </Key>
+          <Property Name="TRANSPORTISTAID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CORREO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MEDIOTRANSPORTE" Relationship="Self.MT_TRANSPORTISTA_FK" FromRole="TRANSPORTISTA" ToRole="MEDIOTRANSPORTE" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.TRANSPORTISTA_USUARIOS_FK" FromRole="TRANSPORTISTA" ToRole="USUARIOS" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="USUARIOID" />
+          </Key>
+          <Property Name="USUARIOID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APELLIDO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CORREOELECTRONICO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONTRASENA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIPOUSUARIOID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.CLIENTE_USUARIOS_FK" FromRole="USUARIOS" ToRole="CLIENTE" />
+          <NavigationProperty Name="CONTRATOS" Relationship="Self.CONTRATOS_USUARIOS_FK" FromRole="USUARIOS" ToRole="CONTRATOS" />
+          <NavigationProperty Name="PAGO" Relationship="Self.PAGO_USUARIOS_FK" FromRole="USUARIOS" ToRole="PAGO" />
+          <NavigationProperty Name="PRODUCTOR" Relationship="Self.PRODUCTOR_USUARIOS_FK" FromRole="USUARIOS" ToRole="PRODUCTOR" />
+          <NavigationProperty Name="TIPOSUSUARIO" Relationship="Self.USUARIOS_TIPOSUSUARIO_FK" FromRole="USUARIOS" ToRole="TIPOSUSUARIO" />
+          <NavigationProperty Name="TRANSPORTISTA" Relationship="Self.TRANSPORTISTA_USUARIOS_FK" FromRole="USUARIOS" ToRole="TRANSPORTISTA" />
+        </EntityType>
+        <EntityType Name="VENTA_PRODUCTO">
+          <Key>
+            <PropertyRef Name="VENTAID" />
+            <PropertyRef Name="PRODUCTOID" />
+          </Key>
+          <Property Name="VENTAID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCTOID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CANTIDAD" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="PRODUCTOS" Relationship="Self.VENTA_PRODUCTO_PRODUCTOS_FK" FromRole="VENTA_PRODUCTO" ToRole="PRODUCTOS" />
+          <NavigationProperty Name="VENTAS" Relationship="Self.VENTA_PRODUCTO_VENTAS_FK" FromRole="VENTA_PRODUCTO" ToRole="VENTAS" />
+        </EntityType>
+        <EntityType Name="VENTAS">
+          <Key>
+            <PropertyRef Name="VENTAID" />
+          </Key>
+          <Property Name="VENTAID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TIPOVENTA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FECHAVENTA" Type="DateTime" Nullable="false" />
+          <Property Name="TOTALVENTA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ESTADOVENTAID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="TRANSPORTEID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="PRODUCTORID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CLIENTEID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.VENTAS_CLIENTE_FK" FromRole="VENTAS" ToRole="CLIENTE" />
+          <NavigationProperty Name="ESTADOVENTA" Relationship="Self.VENTAS_ESTADOVENTA_FK" FromRole="VENTAS" ToRole="ESTADOVENTA" />
+          <NavigationProperty Name="PAGO" Relationship="Self.PAGO_VENTAS_FK" FromRole="VENTAS" ToRole="PAGO" />
+          <NavigationProperty Name="PRODUCTOR" Relationship="Self.VENTAS_PRODUCTOR_FK" FromRole="VENTAS" ToRole="PRODUCTOR" />
+          <NavigationProperty Name="SUBASTA" Relationship="Self.SUBASTA_VENTAS_FK" FromRole="VENTAS" ToRole="SUBASTA" />
+          <NavigationProperty Name="TRANSPORTE" Relationship="Self.VENTAS_TRANSPORTE_FK" FromRole="VENTAS" ToRole="TRANSPORTE" />
+          <NavigationProperty Name="VENTA_PRODUCTO" Relationship="Self.VENTA_PRODUCTO_VENTAS_FK" FromRole="VENTAS" ToRole="VENTA_PRODUCTO" />
+        </EntityType>
+        <Association Name="CLIENTE_USUARIOS_FK">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="USUARIOID" />
+            </Principal>
+            <Dependent Role="CLIENTE">
+              <PropertyRef Name="CLIENTEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VENTAS_CLIENTE_FK">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+          <End Role="VENTAS" Type="Self.VENTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="CLIENTEID" />
+            </Principal>
+            <Dependent Role="VENTAS">
+              <PropertyRef Name="CLIENTEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CONTRATOS_ESTADOCONTRATO_FK">
+          <End Role="ESTADOCONTRATO" Type="Self.ESTADOCONTRATO" Multiplicity="1" />
+          <End Role="CONTRATOS" Type="Self.CONTRATOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTADOCONTRATO">
+              <PropertyRef Name="ESTADOCONTRATOID" />
+            </Principal>
+            <Dependent Role="CONTRATOS">
+              <PropertyRef Name="ESTADOCONTRATOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CONTRATOS_USUARIOS_FK">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="CONTRATOS" Type="Self.CONTRATOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="USUARIOID" />
+            </Principal>
+            <Dependent Role="CONTRATOS">
+              <PropertyRef Name="USUARIOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="POSTULACION_CONTRATOS_FK">
+          <End Role="CONTRATOS" Type="Self.CONTRATOS" Multiplicity="1" />
+          <End Role="POSTULACION" Type="Self.POSTULACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTRATOS">
+              <PropertyRef Name="CONTRATOID" />
+            </Principal>
+            <Dependent Role="POSTULACION">
+              <PropertyRef Name="CONTRATOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VENTAS_ESTADOVENTA_FK">
+          <End Role="ESTADOVENTA" Type="Self.ESTADOVENTA" Multiplicity="0..1" />
+          <End Role="VENTAS" Type="Self.VENTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTADOVENTA">
+              <PropertyRef Name="ESTADOVENTAID" />
+            </Principal>
+            <Dependent Role="VENTAS">
+              <PropertyRef Name="ESTADOVENTAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MT_TRANSPORTE_FK">
+          <End Role="MEDIOTRANSPORTE" Type="Self.MEDIOTRANSPORTE" Multiplicity="1" />
+          <End Role="TRANSPORTE" Type="Self.TRANSPORTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDIOTRANSPORTE">
+              <PropertyRef Name="MEDIOID" />
+            </Principal>
+            <Dependent Role="TRANSPORTE">
+              <PropertyRef Name="MEDIOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MT_TRANSPORTISTA_FK">
+          <End Role="TRANSPORTISTA" Type="Self.TRANSPORTISTA" Multiplicity="1" />
+          <End Role="MEDIOTRANSPORTE" Type="Self.MEDIOTRANSPORTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRANSPORTISTA">
+              <PropertyRef Name="TRANSPORTISTAID" />
+            </Principal>
+            <Dependent Role="MEDIOTRANSPORTE">
+              <PropertyRef Name="TRANSPORTISTAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SM_MEDIOTRANSPORTE_FK">
+          <End Role="MEDIOTRANSPORTE" Type="Self.MEDIOTRANSPORTE" Multiplicity="1" />
+          <End Role="SUBASTA_MEDIO" Type="Self.SUBASTA_MEDIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDIOTRANSPORTE">
+              <PropertyRef Name="MEDIOID" />
+            </Principal>
+            <Dependent Role="SUBASTA_MEDIO">
+              <PropertyRef Name="MEDIOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PAGO_USUARIOS_FK">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="PAGO" Type="Self.PAGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="USUARIOID" />
+            </Principal>
+            <Dependent Role="PAGO">
+              <PropertyRef Name="USUARIOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PAGO_VENTAS_FK">
+          <End Role="VENTAS" Type="Self.VENTAS" Multiplicity="1" />
+          <End Role="PAGO" Type="Self.PAGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VENTAS">
+              <PropertyRef Name="VENTAID" />
+            </Principal>
+            <Dependent Role="PAGO">
+              <PropertyRef Name="VENTAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="POSTULACION_PRODUCTOR_FK">
+          <End Role="PRODUCTOR" Type="Self.PRODUCTOR" Multiplicity="1" />
+          <End Role="POSTULACION" Type="Self.POSTULACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOR">
+              <PropertyRef Name="PRODUCTORID" />
+            </Principal>
+            <Dependent Role="POSTULACION">
+              <PropertyRef Name="PRODUCTORID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCTOR_USUARIOS_FK">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="PRODUCTOR" Type="Self.PRODUCTOR" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="USUARIOID" />
+            </Principal>
+            <Dependent Role="PRODUCTOR">
+              <PropertyRef Name="PRODUCTORID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCTOS_PRODUCTOR_FK">
+          <End Role="PRODUCTOR" Type="Self.PRODUCTOR" Multiplicity="1" />
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOR">
+              <PropertyRef Name="PRODUCTORID" />
+            </Principal>
+            <Dependent Role="PRODUCTOS">
+              <PropertyRef Name="PRODUCTORID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VENTAS_PRODUCTOR_FK">
+          <End Role="PRODUCTOR" Type="Self.PRODUCTOR" Multiplicity="1" />
+          <End Role="VENTAS" Type="Self.VENTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOR">
+              <PropertyRef Name="PRODUCTORID" />
+            </Principal>
+            <Dependent Role="VENTAS">
+              <PropertyRef Name="PRODUCTORID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VENTA_PRODUCTO_PRODUCTOS_FK">
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="1" />
+          <End Role="VENTA_PRODUCTO" Type="Self.VENTA_PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOS">
+              <PropertyRef Name="PRODUCTOID" />
+            </Principal>
+            <Dependent Role="VENTA_PRODUCTO">
+              <PropertyRef Name="PRODUCTOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SM_SUBASTA_FK">
+          <End Role="SUBASTA" Type="Self.SUBASTA" Multiplicity="1" />
+          <End Role="SUBASTA_MEDIO" Type="Self.SUBASTA_MEDIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUBASTA">
+              <PropertyRef Name="SUBASTAID" />
+            </Principal>
+            <Dependent Role="SUBASTA_MEDIO">
+              <PropertyRef Name="SUBASTAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SUBASTA_VENTAS_FK">
+          <End Role="VENTAS" Type="Self.VENTAS" Multiplicity="1" />
+          <End Role="SUBASTA" Type="Self.SUBASTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VENTAS">
+              <PropertyRef Name="VENTAID" />
+            </Principal>
+            <Dependent Role="SUBASTA">
+              <PropertyRef Name="VENTAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USUARIOS_TIPOSUSUARIO_FK">
+          <End Role="TIPOSUSUARIO" Type="Self.TIPOSUSUARIO" Multiplicity="1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOSUSUARIO">
+              <PropertyRef Name="TIPOUSUARIOID" />
+            </Principal>
+            <Dependent Role="USUARIOS">
+              <PropertyRef Name="TIPOUSUARIOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VENTAS_TRANSPORTE_FK">
+          <End Role="TRANSPORTE" Type="Self.TRANSPORTE" Multiplicity="0..1" />
+          <End Role="VENTAS" Type="Self.VENTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRANSPORTE">
+              <PropertyRef Name="TRANSPORTEID" />
+            </Principal>
+            <Dependent Role="VENTAS">
+              <PropertyRef Name="TRANSPORTEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TRANSPORTISTA_USUARIOS_FK">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="TRANSPORTISTA" Type="Self.TRANSPORTISTA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="USUARIOID" />
+            </Principal>
+            <Dependent Role="TRANSPORTISTA">
+              <PropertyRef Name="TRANSPORTISTAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VENTA_PRODUCTO_VENTAS_FK">
+          <End Role="VENTAS" Type="Self.VENTAS" Multiplicity="1" />
+          <End Role="VENTA_PRODUCTO" Type="Self.VENTA_PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VENTAS">
+              <PropertyRef Name="VENTAID" />
+            </Principal>
+            <Dependent Role="VENTA_PRODUCTO">
+              <PropertyRef Name="VENTAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FeriaVirtualEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" />
+          <EntitySet Name="CONTRATOS" EntityType="Self.CONTRATOS" />
+          <EntitySet Name="ESTADOCONTRATO" EntityType="Self.ESTADOCONTRATO" />
+          <EntitySet Name="ESTADOVENTA" EntityType="Self.ESTADOVENTA" />
+          <EntitySet Name="MEDIOTRANSPORTE" EntityType="Self.MEDIOTRANSPORTE" />
+          <EntitySet Name="PAGO" EntityType="Self.PAGO" />
+          <EntitySet Name="POSTULACION" EntityType="Self.POSTULACION" />
+          <EntitySet Name="PRODUCTOR" EntityType="Self.PRODUCTOR" />
+          <EntitySet Name="PRODUCTOS" EntityType="Self.PRODUCTOS" />
+          <EntitySet Name="SUBASTA" EntityType="Self.SUBASTA" />
+          <EntitySet Name="SUBASTA_MEDIO" EntityType="Self.SUBASTA_MEDIO" />
+          <EntitySet Name="TIPOSUSUARIO" EntityType="Self.TIPOSUSUARIO" />
+          <EntitySet Name="TRANSPORTE" EntityType="Self.TRANSPORTE" />
+          <EntitySet Name="TRANSPORTISTA" EntityType="Self.TRANSPORTISTA" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
+          <EntitySet Name="VENTA_PRODUCTO" EntityType="Self.VENTA_PRODUCTO" />
+          <EntitySet Name="VENTAS" EntityType="Self.VENTAS" />
+          <AssociationSet Name="CLIENTE_USUARIOS_FK" Association="Self.CLIENTE_USUARIOS_FK">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="VENTAS_CLIENTE_FK" Association="Self.VENTAS_CLIENTE_FK">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="VENTAS" EntitySet="VENTAS" />
+          </AssociationSet>
+          <AssociationSet Name="CONTRATOS_ESTADOCONTRATO_FK" Association="Self.CONTRATOS_ESTADOCONTRATO_FK">
+            <End Role="ESTADOCONTRATO" EntitySet="ESTADOCONTRATO" />
+            <End Role="CONTRATOS" EntitySet="CONTRATOS" />
+          </AssociationSet>
+          <AssociationSet Name="CONTRATOS_USUARIOS_FK" Association="Self.CONTRATOS_USUARIOS_FK">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="CONTRATOS" EntitySet="CONTRATOS" />
+          </AssociationSet>
+          <AssociationSet Name="POSTULACION_CONTRATOS_FK" Association="Self.POSTULACION_CONTRATOS_FK">
+            <End Role="CONTRATOS" EntitySet="CONTRATOS" />
+            <End Role="POSTULACION" EntitySet="POSTULACION" />
+          </AssociationSet>
+          <AssociationSet Name="VENTAS_ESTADOVENTA_FK" Association="Self.VENTAS_ESTADOVENTA_FK">
+            <End Role="ESTADOVENTA" EntitySet="ESTADOVENTA" />
+            <End Role="VENTAS" EntitySet="VENTAS" />
+          </AssociationSet>
+          <AssociationSet Name="MT_TRANSPORTE_FK" Association="Self.MT_TRANSPORTE_FK">
+            <End Role="MEDIOTRANSPORTE" EntitySet="MEDIOTRANSPORTE" />
+            <End Role="TRANSPORTE" EntitySet="TRANSPORTE" />
+          </AssociationSet>
+          <AssociationSet Name="MT_TRANSPORTISTA_FK" Association="Self.MT_TRANSPORTISTA_FK">
+            <End Role="TRANSPORTISTA" EntitySet="TRANSPORTISTA" />
+            <End Role="MEDIOTRANSPORTE" EntitySet="MEDIOTRANSPORTE" />
+          </AssociationSet>
+          <AssociationSet Name="SM_MEDIOTRANSPORTE_FK" Association="Self.SM_MEDIOTRANSPORTE_FK">
+            <End Role="MEDIOTRANSPORTE" EntitySet="MEDIOTRANSPORTE" />
+            <End Role="SUBASTA_MEDIO" EntitySet="SUBASTA_MEDIO" />
+          </AssociationSet>
+          <AssociationSet Name="PAGO_USUARIOS_FK" Association="Self.PAGO_USUARIOS_FK">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="PAGO" EntitySet="PAGO" />
+          </AssociationSet>
+          <AssociationSet Name="PAGO_VENTAS_FK" Association="Self.PAGO_VENTAS_FK">
+            <End Role="VENTAS" EntitySet="VENTAS" />
+            <End Role="PAGO" EntitySet="PAGO" />
+          </AssociationSet>
+          <AssociationSet Name="POSTULACION_PRODUCTOR_FK" Association="Self.POSTULACION_PRODUCTOR_FK">
+            <End Role="PRODUCTOR" EntitySet="PRODUCTOR" />
+            <End Role="POSTULACION" EntitySet="POSTULACION" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCTOR_USUARIOS_FK" Association="Self.PRODUCTOR_USUARIOS_FK">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="PRODUCTOR" EntitySet="PRODUCTOR" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCTOS_PRODUCTOR_FK" Association="Self.PRODUCTOS_PRODUCTOR_FK">
+            <End Role="PRODUCTOR" EntitySet="PRODUCTOR" />
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+          </AssociationSet>
+          <AssociationSet Name="VENTAS_PRODUCTOR_FK" Association="Self.VENTAS_PRODUCTOR_FK">
+            <End Role="PRODUCTOR" EntitySet="PRODUCTOR" />
+            <End Role="VENTAS" EntitySet="VENTAS" />
+          </AssociationSet>
+          <AssociationSet Name="VENTA_PRODUCTO_PRODUCTOS_FK" Association="Self.VENTA_PRODUCTO_PRODUCTOS_FK">
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+            <End Role="VENTA_PRODUCTO" EntitySet="VENTA_PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="SM_SUBASTA_FK" Association="Self.SM_SUBASTA_FK">
+            <End Role="SUBASTA" EntitySet="SUBASTA" />
+            <End Role="SUBASTA_MEDIO" EntitySet="SUBASTA_MEDIO" />
+          </AssociationSet>
+          <AssociationSet Name="SUBASTA_VENTAS_FK" Association="Self.SUBASTA_VENTAS_FK">
+            <End Role="VENTAS" EntitySet="VENTAS" />
+            <End Role="SUBASTA" EntitySet="SUBASTA" />
+          </AssociationSet>
+          <AssociationSet Name="USUARIOS_TIPOSUSUARIO_FK" Association="Self.USUARIOS_TIPOSUSUARIO_FK">
+            <End Role="TIPOSUSUARIO" EntitySet="TIPOSUSUARIO" />
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="VENTAS_TRANSPORTE_FK" Association="Self.VENTAS_TRANSPORTE_FK">
+            <End Role="TRANSPORTE" EntitySet="TRANSPORTE" />
+            <End Role="VENTAS" EntitySet="VENTAS" />
+          </AssociationSet>
+          <AssociationSet Name="TRANSPORTISTA_USUARIOS_FK" Association="Self.TRANSPORTISTA_USUARIOS_FK">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="TRANSPORTISTA" EntitySet="TRANSPORTISTA" />
+          </AssociationSet>
+          <AssociationSet Name="VENTA_PRODUCTO_VENTAS_FK" Association="Self.VENTA_PRODUCTO_VENTAS_FK">
+            <End Role="VENTAS" EntitySet="VENTAS" />
+            <End Role="VENTA_PRODUCTO" EntitySet="VENTA_PRODUCTO" />
+          </AssociationSet>
+          <FunctionImport Name="DELETE_CONTRATO">
+          <Parameter Name="P_CONTRATOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="DELETE_MEDIOTRANSPORTE">
+          <Parameter Name="P_MEDIOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="DELETE_PAGO">
+          <Parameter Name="P_PAGOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="DELETE_POSTULACION">
+          <Parameter Name="P_POSTULACIONID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="DELETE_PRODUCTOS">
+          <Parameter Name="P_PRODUCTOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="DELETE_SUBASTA">
+          <Parameter Name="P_SUBASTAID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="DELETE_SUBASTA_MEDIO">
+            <Parameter Name="P_MEDIOID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_SUBASTAID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="DELETE_TRANSPORTE">
+          <Parameter Name="P_TRANSPORTEID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="DELETE_USUARIOS">
+          <Parameter Name="P_USUARIOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="DELETE_VENTA_PRODUCTO">
+            <Parameter Name="P_VENTAID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_PRODUCTOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="DELETE_VENTAS">
+          <Parameter Name="P_VENTAID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="FINISH_SUBASTA">
+            <Parameter Name="P_SUBASTAID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_FINISHED" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GET_ALL_CLIENTES" />
+          <FunctionImport Name="GET_ALL_CONTRATOS" />
+          <FunctionImport Name="GET_ALL_MEDIOTRANSPORTE" />
+          <FunctionImport Name="GET_ALL_PAGOS" />
+          <FunctionImport Name="GET_ALL_POSTULACIONES" />
+          <FunctionImport Name="GET_ALL_PRODUCTORES" />
+          <FunctionImport Name="GET_ALL_PRODUCTOS" />
+          <FunctionImport Name="GET_ALL_SUBASTA" />
+          <FunctionImport Name="GET_ALL_SUBASTA_MEDIO" />
+          <FunctionImport Name="GET_ALL_SUBMEDIO" />
+          <FunctionImport Name="GET_ALL_TRANSPORTE" />
+          <FunctionImport Name="GET_ALL_TRANSPORTISTA" />
+          <FunctionImport Name="GET_ALL_USUARIOS" />
+          <FunctionImport Name="GET_ALL_VENTA_PRODUCTO" />
+          <FunctionImport Name="GET_ALL_VENTAS" />
+          <FunctionImport Name="GET_CLIENTE_BY_ID">
+          <Parameter Name="P_CLIENTEID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GET_CONTRATO_BY_ID">
+          <Parameter Name="P_CONTRATO_ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GET_MEDIOTRANSPORTE_BY_ID">
+          <Parameter Name="P_MEDIOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GET_PAGO_BY_ID">
+          <Parameter Name="P_PAGOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GET_POSTULACION_BY_CONTRACT">
+          <Parameter Name="P_CONTRATOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GET_POSTULACION_BY_ID">
+          <Parameter Name="P_POSTULACIONID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GET_POSTULACION_BY_PRODUCTOR">
+          <Parameter Name="P_PRODUCTORID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GET_PRODUCTO_BY_ID">
+          <Parameter Name="P_PRODUCTOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GET_PRODUCTOR_BY_ID">
+          <Parameter Name="P_PRODUCTORID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GET_PRODUCTOS_BY_PRODUCTOR">
+          <Parameter Name="P_PRODUCTORID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GET_PUBLISHED_CONTRATOS" />
+          <FunctionImport Name="GET_SELECTED_POSTULACION">
+          <Parameter Name="P_CONTRATOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GET_SUBASTA_BY_ID">
+          <Parameter Name="P_SUBASTAID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GET_SUBASTA_MEDIO_BY_ID">
+            <Parameter Name="P_MEDIOID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_SUBASTAID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GET_TRANSPORTE_BY_ID">
+          <Parameter Name="P_TRANSPORTEID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GET_TRANSPORTISTA_BY_ID">
+          <Parameter Name="P_TRANSPORTISTAID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GET_UNFINISHED_SUBASTA" />
+          <FunctionImport Name="GET_USUARIO_BY_ID">
+          <Parameter Name="P_USUARIOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GET_VENTA_BY_ID">
+          <Parameter Name="P_VENTAID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GET_VENTA_BY_TYPE">
+          <Parameter Name="P_TIPOVENTA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_VENTA_PRODUCTO_BY_ID">
+            <Parameter Name="P_VENTAID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_PRODUCTOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="INSERT_CONTRATO">
+            <Parameter Name="P_FECHAINICIO" Mode="In" Type="DateTime" />
+            <Parameter Name="P_FECHAFINALIZACION" Mode="In" Type="DateTime" />
+            <Parameter Name="P_TIPOCONTRATO" Mode="In" Type="String" />
+            <Parameter Name="P_ESTADOCONTRATOID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_DEMANDA" Mode="In" Type="String" />
+            <Parameter Name="P_CANTIDAD" Mode="In" Type="Decimal" />
+            <Parameter Name="P_USUARIOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="INSERT_MEDIOTRANSPORTE">
+            <Parameter Name="P_PATENTE" Mode="In" Type="String" />
+            <Parameter Name="P_ANCHO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_LARGO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ALTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_PRECIO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_CAPACIDAD" Mode="In" Type="Decimal" />
+            <Parameter Name="P_REFRIGERADO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_TRANSPORTISTAID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="INSERT_PAGO">
+            <Parameter Name="P_FECHA_PAGO" Mode="In" Type="DateTime" />
+            <Parameter Name="P_PAGO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_VENTAID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_USUARIOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="INSERT_POSTULACION">
+            <Parameter Name="P_PRECIO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_CANTIDAD" Mode="In" Type="Decimal" />
+            <Parameter Name="P_FECHACOSECHA" Mode="In" Type="DateTime" />
+            <Parameter Name="P_CONTRATOID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_PRODUCTORID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="INSERT_PRODUCTO">
+            <Parameter Name="P_NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="P_PRECIO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_STOCK" Mode="In" Type="Decimal" />
+            <Parameter Name="P_PRODUCTORID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="INSERT_SUBASTA">
+            <Parameter Name="P_VENTAID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_FECHAINICIO" Mode="In" Type="DateTime" />
+            <Parameter Name="P_FECHATERMINO" Mode="In" Type="DateTime" />
+            <Parameter Name="P_ANCHO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_LARGO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ALTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_CAPACIDAD" Mode="In" Type="Decimal" />
+            <Parameter Name="P_REFRIGERADO" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="INSERT_SUBASTA_MEDIO">
+            <Parameter Name="P_MEDIOID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_SUBASTAID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="INSERT_TRANSPORTE">
+            <Parameter Name="P_TIPOTRANSPORTE" Mode="In" Type="String" />
+            <Parameter Name="P_FECHATRANSPORTE" Mode="In" Type="DateTime" />
+            <Parameter Name="P_ORIGEN" Mode="In" Type="String" />
+            <Parameter Name="P_DESTINO" Mode="In" Type="String" />
+            <Parameter Name="P_ESTADOTRANSPORTE" Mode="In" Type="String" />
+            <Parameter Name="P_MEDIOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="INSERT_USUARIO">
+            <Parameter Name="P_NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="P_APELLIDO" Mode="In" Type="String" />
+            <Parameter Name="P_CORREOELECTRONICO" Mode="In" Type="String" />
+            <Parameter Name="P_CONTRASENA" Mode="In" Type="String" />
+            <Parameter Name="P_TIPOUSUARIOID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_DIRECCION" Mode="In" Type="String" />
+            <Parameter Name="P_TELEFONO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="INSERT_VENTA">
+            <Parameter Name="P_FECHAVENTA" Mode="In" Type="DateTime" />
+            <Parameter Name="P_TIPOVENTA" Mode="In" Type="String" />
+            <Parameter Name="P_TOTALVENTA" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ESTADOVENTAID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_TRANSPORTEID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_PRODUCTORID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_CLIENTEID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="INSERT_VENTA_PRODUCTO">
+            <Parameter Name="P_VENTAID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_PRODUCTOID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_CANTIDAD" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="PUBLISH_CONTRATO">
+            <Parameter Name="P_CONTRATOID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_PUBLISHED" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SET_SELECTED_POSTULACION">
+            <Parameter Name="P_POSTULACIONID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_SELECTED" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_CONTRATO">
+            <Parameter Name="P_CONTRATOID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_FECHAINICIO" Mode="In" Type="DateTime" />
+            <Parameter Name="P_FECHAFINALIZACION" Mode="In" Type="DateTime" />
+            <Parameter Name="P_TIPOCONTRATO" Mode="In" Type="String" />
+            <Parameter Name="P_ESTADOCONTRATOID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_DEMANDA" Mode="In" Type="String" />
+            <Parameter Name="P_CANTIDAD" Mode="In" Type="Decimal" />
+            <Parameter Name="P_USUARIOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_MEDIOTRANSPORTE">
+            <Parameter Name="P_MEDIOID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_PATENTE" Mode="In" Type="String" />
+            <Parameter Name="P_ANCHO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_LARGO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ALTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_CAPACIDAD" Mode="In" Type="Decimal" />
+            <Parameter Name="P_REFRIGERADO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_PRECIO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_TRANSPORTISTAID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_PAGO">
+            <Parameter Name="P_PAGOID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_FECHA_PAGO" Mode="In" Type="DateTime" />
+            <Parameter Name="P_PAGO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_VENTAID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_USUARIOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_POSTULACION">
+            <Parameter Name="P_POSTULACIONID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_PRECIO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_CANTIDAD" Mode="In" Type="Decimal" />
+            <Parameter Name="P_FECHACOSECHA" Mode="In" Type="DateTime" />
+            <Parameter Name="P_CONTRATOID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_PRODUCTORID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_PRODUCTOS">
+            <Parameter Name="P_PRODUCTOID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="P_PRECIO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_STOCK" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_SUBASTA">
+            <Parameter Name="P_SUBASTAID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_VENTAID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_FECHAINICIO" Mode="In" Type="DateTime" />
+            <Parameter Name="P_FECHATERMINO" Mode="In" Type="DateTime" />
+            <Parameter Name="P_ANCHO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_LARGO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ALTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_CAPACIDAD" Mode="In" Type="Decimal" />
+            <Parameter Name="P_REFRIGERADO" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_SUBASTA_MEDIO">
+            <Parameter Name="P_MEDIOID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_SUBASTAID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_SELECTED" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_TRANSPORTE">
+            <Parameter Name="P_TRANSPORTEID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_TIPOTRANSPORTE" Mode="In" Type="String" />
+            <Parameter Name="P_FECHATRANSPORTE" Mode="In" Type="DateTime" />
+            <Parameter Name="P_ORIGEN" Mode="In" Type="String" />
+            <Parameter Name="P_DESTINO" Mode="In" Type="String" />
+            <Parameter Name="P_ESTADOTRANSPORTE" Mode="In" Type="String" />
+            <Parameter Name="P_MEDIOID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_USUARIOS">
+            <Parameter Name="P_USUARIOID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="P_APELLIDO" Mode="In" Type="String" />
+            <Parameter Name="P_CORREOELECTRONICO" Mode="In" Type="String" />
+            <Parameter Name="P_CONTRASENA" Mode="In" Type="String" />
+            <Parameter Name="P_TIPOUSUARIOID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_DIRECCION" Mode="In" Type="String" />
+            <Parameter Name="P_TELEFONO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_VENTAS">
+            <Parameter Name="P_VENTAID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_TIPOVENTA" Mode="In" Type="String" />
+            <Parameter Name="P_FECHAVENTA" Mode="In" Type="DateTime" />
+            <Parameter Name="P_TOTALVENTA" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ESTADOVENTAID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_TRANSPORTEID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_PRODUCTORID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_CLIENTEID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="FeriaVirtualEntities">
+          <EntitySetMapping Name="CLIENTE">
+            <EntityTypeMapping TypeName="Model.CLIENTE">
+              <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="CLIENTEID" ColumnName="CLIENTEID" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="TIPOCLIENTE" ColumnName="TIPOCLIENTE" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONTRATOS">
+            <EntityTypeMapping TypeName="Model.CONTRATOS">
+              <MappingFragment StoreEntitySet="CONTRATOS">
+                <ScalarProperty Name="CONTRATOID" ColumnName="CONTRATOID" />
+                <ScalarProperty Name="FECHAINICIO" ColumnName="FECHAINICIO" />
+                <ScalarProperty Name="FECHAFINALIZACION" ColumnName="FECHAFINALIZACION" />
+                <ScalarProperty Name="TIPOCONTRATO" ColumnName="TIPOCONTRATO" />
+                <ScalarProperty Name="ESTADOCONTRATOID" ColumnName="ESTADOCONTRATOID" />
+                <ScalarProperty Name="DEMANDA" ColumnName="DEMANDA" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="USUARIOID" ColumnName="USUARIOID" />
+                <ScalarProperty Name="PUBLISHED" ColumnName="PUBLISHED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ESTADOCONTRATO">
+            <EntityTypeMapping TypeName="Model.ESTADOCONTRATO">
+              <MappingFragment StoreEntitySet="ESTADOCONTRATO">
+                <ScalarProperty Name="ESTADOCONTRATOID" ColumnName="ESTADOCONTRATOID" />
+                <ScalarProperty Name="NOMBREESTADO" ColumnName="NOMBREESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ESTADOVENTA">
+            <EntityTypeMapping TypeName="Model.ESTADOVENTA">
+              <MappingFragment StoreEntitySet="ESTADOVENTA">
+                <ScalarProperty Name="ESTADOVENTAID" ColumnName="ESTADOVENTAID" />
+                <ScalarProperty Name="NOMBREESTADOVENTA" ColumnName="NOMBREESTADOVENTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MEDIOTRANSPORTE">
+            <EntityTypeMapping TypeName="Model.MEDIOTRANSPORTE">
+              <MappingFragment StoreEntitySet="MEDIOTRANSPORTE">
+                <ScalarProperty Name="MEDIOID" ColumnName="MEDIOID" />
+                <ScalarProperty Name="PATENTE" ColumnName="PATENTE" />
+                <ScalarProperty Name="ANCHO" ColumnName="ANCHO" />
+                <ScalarProperty Name="LARGO" ColumnName="LARGO" />
+                <ScalarProperty Name="ALTO" ColumnName="ALTO" />
+                <ScalarProperty Name="CAPACIDAD" ColumnName="CAPACIDAD" />
+                <ScalarProperty Name="REFRIGERADO" ColumnName="REFRIGERADO" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="TRANSPORTISTAID" ColumnName="TRANSPORTISTAID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAGO">
+            <EntityTypeMapping TypeName="Model.PAGO">
+              <MappingFragment StoreEntitySet="PAGO">
+                <ScalarProperty Name="PAGOID" ColumnName="PAGOID" />
+                <ScalarProperty Name="FECHA_PAGO" ColumnName="FECHA_PAGO" />
+                <ScalarProperty Name="PAGO1" ColumnName="PAGO" />
+                <ScalarProperty Name="VENTAID" ColumnName="VENTAID" />
+                <ScalarProperty Name="USUARIOID" ColumnName="USUARIOID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POSTULACION">
+            <EntityTypeMapping TypeName="Model.POSTULACION">
+              <MappingFragment StoreEntitySet="POSTULACION">
+                <ScalarProperty Name="POSTULACIONID" ColumnName="POSTULACIONID" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="FECHACOSECHA" ColumnName="FECHACOSECHA" />
+                <ScalarProperty Name="CONTRATOID" ColumnName="CONTRATOID" />
+                <ScalarProperty Name="PRODUCTORID" ColumnName="PRODUCTORID" />
+                <ScalarProperty Name="SELECTED" ColumnName="SELECTED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTOR">
+            <EntityTypeMapping TypeName="Model.PRODUCTOR">
+              <MappingFragment StoreEntitySet="PRODUCTOR">
+                <ScalarProperty Name="PRODUCTORID" ColumnName="PRODUCTORID" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTOS">
+            <EntityTypeMapping TypeName="Model.PRODUCTOS">
+              <MappingFragment StoreEntitySet="PRODUCTOS">
+                <ScalarProperty Name="PRODUCTOID" ColumnName="PRODUCTOID" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="STOCK" ColumnName="STOCK" />
+                <ScalarProperty Name="PRODUCTORID" ColumnName="PRODUCTORID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUBASTA">
+            <EntityTypeMapping TypeName="Model.SUBASTA">
+              <MappingFragment StoreEntitySet="SUBASTA">
+                <ScalarProperty Name="SUBASTAID" ColumnName="SUBASTAID" />
+                <ScalarProperty Name="VENTAID" ColumnName="VENTAID" />
+                <ScalarProperty Name="FECHAINICIO" ColumnName="FECHAINICIO" />
+                <ScalarProperty Name="FECHATERMINO" ColumnName="FECHATERMINO" />
+                <ScalarProperty Name="ANCHO_MIN" ColumnName="ANCHO_MIN" />
+                <ScalarProperty Name="LARGO_MIN" ColumnName="LARGO_MIN" />
+                <ScalarProperty Name="ALTO_MIN" ColumnName="ALTO_MIN" />
+                <ScalarProperty Name="CAPACIDAD" ColumnName="CAPACIDAD" />
+                <ScalarProperty Name="REFRIGERADO" ColumnName="REFRIGERADO" />
+                <ScalarProperty Name="FINISHED" ColumnName="FINISHED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUBASTA_MEDIO">
+            <EntityTypeMapping TypeName="Model.SUBASTA_MEDIO">
+              <MappingFragment StoreEntitySet="SUBASTA_MEDIO">
+                <ScalarProperty Name="MEDIOID" ColumnName="MEDIOID" />
+                <ScalarProperty Name="SUBASTAID" ColumnName="SUBASTAID" />
+                <ScalarProperty Name="SELECTED" ColumnName="SELECTED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPOSUSUARIO">
+            <EntityTypeMapping TypeName="Model.TIPOSUSUARIO">
+              <MappingFragment StoreEntitySet="TIPOSUSUARIO">
+                <ScalarProperty Name="TIPOUSUARIOID" ColumnName="TIPOUSUARIOID" />
+                <ScalarProperty Name="NOMBRETIPO" ColumnName="NOMBRETIPO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANSPORTE">
+            <EntityTypeMapping TypeName="Model.TRANSPORTE">
+              <MappingFragment StoreEntitySet="TRANSPORTE">
+                <ScalarProperty Name="TRANSPORTEID" ColumnName="TRANSPORTEID" />
+                <ScalarProperty Name="TIPOTRANSPORTE" ColumnName="TIPOTRANSPORTE" />
+                <ScalarProperty Name="FECHATRANSPORTE" ColumnName="FECHATRANSPORTE" />
+                <ScalarProperty Name="ORIGEN" ColumnName="ORIGEN" />
+                <ScalarProperty Name="DESTINO" ColumnName="DESTINO" />
+                <ScalarProperty Name="ESTADOTRANSPORTE" ColumnName="ESTADOTRANSPORTE" />
+                <ScalarProperty Name="MEDIOID" ColumnName="MEDIOID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANSPORTISTA">
+            <EntityTypeMapping TypeName="Model.TRANSPORTISTA">
+              <MappingFragment StoreEntitySet="TRANSPORTISTA">
+                <ScalarProperty Name="TRANSPORTISTAID" ColumnName="TRANSPORTISTAID" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOS">
+            <EntityTypeMapping TypeName="Model.USUARIOS">
+              <MappingFragment StoreEntitySet="USUARIOS">
+                <ScalarProperty Name="USUARIOID" ColumnName="USUARIOID" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
+                <ScalarProperty Name="CORREOELECTRONICO" ColumnName="CORREOELECTRONICO" />
+                <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
+                <ScalarProperty Name="TIPOUSUARIOID" ColumnName="TIPOUSUARIOID" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VENTA_PRODUCTO">
+            <EntityTypeMapping TypeName="Model.VENTA_PRODUCTO">
+              <MappingFragment StoreEntitySet="VENTA_PRODUCTO">
+                <ScalarProperty Name="VENTAID" ColumnName="VENTAID" />
+                <ScalarProperty Name="PRODUCTOID" ColumnName="PRODUCTOID" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VENTAS">
+            <EntityTypeMapping TypeName="Model.VENTAS">
+              <MappingFragment StoreEntitySet="VENTAS">
+                <ScalarProperty Name="VENTAID" ColumnName="VENTAID" />
+                <ScalarProperty Name="TIPOVENTA" ColumnName="TIPOVENTA" />
+                <ScalarProperty Name="FECHAVENTA" ColumnName="FECHAVENTA" />
+                <ScalarProperty Name="TOTALVENTA" ColumnName="TOTALVENTA" />
+                <ScalarProperty Name="ESTADOVENTAID" ColumnName="ESTADOVENTAID" />
+                <ScalarProperty Name="TRANSPORTEID" ColumnName="TRANSPORTEID" />
+                <ScalarProperty Name="PRODUCTORID" ColumnName="PRODUCTORID" />
+                <ScalarProperty Name="CLIENTEID" ColumnName="CLIENTEID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DELETE_CONTRATO" FunctionName="Model.Store.DELETE_CONTRATO" />
+          <FunctionImportMapping FunctionImportName="DELETE_MEDIOTRANSPORTE" FunctionName="Model.Store.DELETE_MEDIOTRANSPORTE" />
+          <FunctionImportMapping FunctionImportName="DELETE_PAGO" FunctionName="Model.Store.DELETE_PAGO" />
+          <FunctionImportMapping FunctionImportName="DELETE_POSTULACION" FunctionName="Model.Store.DELETE_POSTULACION" />
+          <FunctionImportMapping FunctionImportName="DELETE_PRODUCTOS" FunctionName="Model.Store.DELETE_PRODUCTOS" />
+          <FunctionImportMapping FunctionImportName="DELETE_SUBASTA" FunctionName="Model.Store.DELETE_SUBASTA" />
+          <FunctionImportMapping FunctionImportName="DELETE_SUBASTA_MEDIO" FunctionName="Model.Store.DELETE_SUBASTA_MEDIO" />
+          <FunctionImportMapping FunctionImportName="DELETE_TRANSPORTE" FunctionName="Model.Store.DELETE_TRANSPORTE" />
+          <FunctionImportMapping FunctionImportName="DELETE_USUARIOS" FunctionName="Model.Store.DELETE_USUARIOS" />
+          <FunctionImportMapping FunctionImportName="DELETE_VENTA_PRODUCTO" FunctionName="Model.Store.DELETE_VENTA_PRODUCTO" />
+          <FunctionImportMapping FunctionImportName="DELETE_VENTAS" FunctionName="Model.Store.DELETE_VENTAS" />
+          <FunctionImportMapping FunctionImportName="FINISH_SUBASTA" FunctionName="Model.Store.FINISH_SUBASTA" />
+          <FunctionImportMapping FunctionImportName="GET_ALL_CLIENTES" FunctionName="Model.Store.GET_ALL_CLIENTES" />
+          <FunctionImportMapping FunctionImportName="GET_ALL_CONTRATOS" FunctionName="Model.Store.GET_ALL_CONTRATOS" />
+          <FunctionImportMapping FunctionImportName="GET_ALL_MEDIOTRANSPORTE" FunctionName="Model.Store.GET_ALL_MEDIOTRANSPORTE" />
+          <FunctionImportMapping FunctionImportName="GET_ALL_PAGOS" FunctionName="Model.Store.GET_ALL_PAGOS" />
+          <FunctionImportMapping FunctionImportName="GET_ALL_POSTULACIONES" FunctionName="Model.Store.GET_ALL_POSTULACIONES" />
+          <FunctionImportMapping FunctionImportName="GET_ALL_PRODUCTORES" FunctionName="Model.Store.GET_ALL_PRODUCTORES" />
+          <FunctionImportMapping FunctionImportName="GET_ALL_PRODUCTOS" FunctionName="Model.Store.GET_ALL_PRODUCTOS" />
+          <FunctionImportMapping FunctionImportName="GET_ALL_SUBASTA" FunctionName="Model.Store.GET_ALL_SUBASTA" />
+          <FunctionImportMapping FunctionImportName="GET_ALL_SUBASTA_MEDIO" FunctionName="Model.Store.GET_ALL_SUBASTA_MEDIO" />
+          <FunctionImportMapping FunctionImportName="GET_ALL_SUBMEDIO" FunctionName="Model.Store.GET_ALL_SUBMEDIO" />
+          <FunctionImportMapping FunctionImportName="GET_ALL_TRANSPORTE" FunctionName="Model.Store.GET_ALL_TRANSPORTE" />
+          <FunctionImportMapping FunctionImportName="GET_ALL_TRANSPORTISTA" FunctionName="Model.Store.GET_ALL_TRANSPORTISTA" />
+          <FunctionImportMapping FunctionImportName="GET_ALL_USUARIOS" FunctionName="Model.Store.GET_ALL_USUARIOS" />
+          <FunctionImportMapping FunctionImportName="GET_ALL_VENTA_PRODUCTO" FunctionName="Model.Store.GET_ALL_VENTA_PRODUCTO" />
+          <FunctionImportMapping FunctionImportName="GET_ALL_VENTAS" FunctionName="Model.Store.GET_ALL_VENTAS" />
+          <FunctionImportMapping FunctionImportName="GET_CLIENTE_BY_ID" FunctionName="Model.Store.GET_CLIENTE_BY_ID" />
+          <FunctionImportMapping FunctionImportName="GET_CONTRATO_BY_ID" FunctionName="Model.Store.GET_CONTRATO_BY_ID" />
+          <FunctionImportMapping FunctionImportName="GET_MEDIOTRANSPORTE_BY_ID" FunctionName="Model.Store.GET_MEDIOTRANSPORTE_BY_ID" />
+          <FunctionImportMapping FunctionImportName="GET_PAGO_BY_ID" FunctionName="Model.Store.GET_PAGO_BY_ID" />
+          <FunctionImportMapping FunctionImportName="GET_POSTULACION_BY_CONTRACT" FunctionName="Model.Store.GET_POSTULACION_BY_CONTRACT" />
+          <FunctionImportMapping FunctionImportName="GET_POSTULACION_BY_ID" FunctionName="Model.Store.GET_POSTULACION_BY_ID" />
+          <FunctionImportMapping FunctionImportName="GET_POSTULACION_BY_PRODUCTOR" FunctionName="Model.Store.GET_POSTULACION_BY_PRODUCTOR" />
+          <FunctionImportMapping FunctionImportName="GET_PRODUCTO_BY_ID" FunctionName="Model.Store.GET_PRODUCTO_BY_ID" />
+          <FunctionImportMapping FunctionImportName="GET_PRODUCTOR_BY_ID" FunctionName="Model.Store.GET_PRODUCTOR_BY_ID" />
+          <FunctionImportMapping FunctionImportName="GET_PRODUCTOS_BY_PRODUCTOR" FunctionName="Model.Store.GET_PRODUCTOS_BY_PRODUCTOR" />
+          <FunctionImportMapping FunctionImportName="GET_PUBLISHED_CONTRATOS" FunctionName="Model.Store.GET_PUBLISHED_CONTRATOS" />
+          <FunctionImportMapping FunctionImportName="GET_SELECTED_POSTULACION" FunctionName="Model.Store.GET_SELECTED_POSTULACION" />
+          <FunctionImportMapping FunctionImportName="GET_SUBASTA_BY_ID" FunctionName="Model.Store.GET_SUBASTA_BY_ID" />
+          <FunctionImportMapping FunctionImportName="GET_SUBASTA_MEDIO_BY_ID" FunctionName="Model.Store.GET_SUBASTA_MEDIO_BY_ID" />
+          <FunctionImportMapping FunctionImportName="GET_TRANSPORTE_BY_ID" FunctionName="Model.Store.GET_TRANSPORTE_BY_ID" />
+          <FunctionImportMapping FunctionImportName="GET_TRANSPORTISTA_BY_ID" FunctionName="Model.Store.GET_TRANSPORTISTA_BY_ID" />
+          <FunctionImportMapping FunctionImportName="GET_UNFINISHED_SUBASTA" FunctionName="Model.Store.GET_UNFINISHED_SUBASTA" />
+          <FunctionImportMapping FunctionImportName="GET_USUARIO_BY_ID" FunctionName="Model.Store.GET_USUARIO_BY_ID" />
+          <FunctionImportMapping FunctionImportName="GET_VENTA_BY_ID" FunctionName="Model.Store.GET_VENTA_BY_ID" />
+          <FunctionImportMapping FunctionImportName="GET_VENTA_BY_TYPE" FunctionName="Model.Store.GET_VENTA_BY_TYPE" />
+          <FunctionImportMapping FunctionImportName="GET_VENTA_PRODUCTO_BY_ID" FunctionName="Model.Store.GET_VENTA_PRODUCTO_BY_ID" />
+          <FunctionImportMapping FunctionImportName="INSERT_CONTRATO" FunctionName="Model.Store.INSERT_CONTRATO" />
+          <FunctionImportMapping FunctionImportName="INSERT_MEDIOTRANSPORTE" FunctionName="Model.Store.INSERT_MEDIOTRANSPORTE" />
+          <FunctionImportMapping FunctionImportName="INSERT_PAGO" FunctionName="Model.Store.INSERT_PAGO" />
+          <FunctionImportMapping FunctionImportName="INSERT_POSTULACION" FunctionName="Model.Store.INSERT_POSTULACION" />
+          <FunctionImportMapping FunctionImportName="INSERT_PRODUCTO" FunctionName="Model.Store.INSERT_PRODUCTO" />
+          <FunctionImportMapping FunctionImportName="INSERT_SUBASTA" FunctionName="Model.Store.INSERT_SUBASTA" />
+          <FunctionImportMapping FunctionImportName="INSERT_SUBASTA_MEDIO" FunctionName="Model.Store.INSERT_SUBASTA_MEDIO" />
+          <FunctionImportMapping FunctionImportName="INSERT_TRANSPORTE" FunctionName="Model.Store.INSERT_TRANSPORTE" />
+          <FunctionImportMapping FunctionImportName="INSERT_USUARIO" FunctionName="Model.Store.INSERT_USUARIO" />
+          <FunctionImportMapping FunctionImportName="INSERT_VENTA" FunctionName="Model.Store.INSERT_VENTA" />
+          <FunctionImportMapping FunctionImportName="INSERT_VENTA_PRODUCTO" FunctionName="Model.Store.INSERT_VENTA_PRODUCTO" />
+          <FunctionImportMapping FunctionImportName="PUBLISH_CONTRATO" FunctionName="Model.Store.PUBLISH_CONTRATO" />
+          <FunctionImportMapping FunctionImportName="SET_SELECTED_POSTULACION" FunctionName="Model.Store.SET_SELECTED_POSTULACION" />
+          <FunctionImportMapping FunctionImportName="UPDATE_CONTRATO" FunctionName="Model.Store.UPDATE_CONTRATO" />
+          <FunctionImportMapping FunctionImportName="UPDATE_MEDIOTRANSPORTE" FunctionName="Model.Store.UPDATE_MEDIOTRANSPORTE" />
+          <FunctionImportMapping FunctionImportName="UPDATE_PAGO" FunctionName="Model.Store.UPDATE_PAGO" />
+          <FunctionImportMapping FunctionImportName="UPDATE_POSTULACION" FunctionName="Model.Store.UPDATE_POSTULACION" />
+          <FunctionImportMapping FunctionImportName="UPDATE_PRODUCTOS" FunctionName="Model.Store.UPDATE_PRODUCTOS" />
+          <FunctionImportMapping FunctionImportName="UPDATE_SUBASTA" FunctionName="Model.Store.UPDATE_SUBASTA" />
+          <FunctionImportMapping FunctionImportName="UPDATE_SUBASTA_MEDIO" FunctionName="Model.Store.UPDATE_SUBASTA_MEDIO" />
+          <FunctionImportMapping FunctionImportName="UPDATE_TRANSPORTE" FunctionName="Model.Store.UPDATE_TRANSPORTE" />
+          <FunctionImportMapping FunctionImportName="UPDATE_USUARIOS" FunctionName="Model.Store.UPDATE_USUARIOS" />
+          <FunctionImportMapping FunctionImportName="UPDATE_VENTAS" FunctionName="Model.Store.UPDATE_VENTAS" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

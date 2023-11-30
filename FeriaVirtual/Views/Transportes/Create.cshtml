@@ -1,0 +1,70 @@
+﻿@model FeriaVirtual.Negocio.Productos
+
+@{ ViewBag.Title = "Actualizar Transporte";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+
+
+    h2 {
+        text-align: center;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    select {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+    }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<div style="position: absolute; top: 60px; left: 10px;">
+    <a href="@Url.Action("Index", "Transportes")" class="btn btn-sm btn-transparent" style="border: 1px solid;">Volver</a>
+</div>
+
+<div class="container">
+    <h2>Actualizar Estado</h2>
+
+    @using (Html.BeginForm("Create", "Transportes", FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.DropDownList("estado", new SelectList(
+                     new List<SelectListItem>
+                     {
+                    new SelectListItem { Text = "En Preparación", Value = "En Preparación" },
+                    new SelectListItem { Text = "Recogiendo Productos", Value = "Recogiendo Productos" },
+                    new SelectListItem { Text = "Tránsito a Bodega", Value = "Tránsito a Bodega" },
+                    new SelectListItem { Text = "Transportando a Destino", Value = "Transportando a Destino" },
+                    new SelectListItem { Text = "Entregado", Value = "Entregado" },
+                             // Add more states as needed
+                         }, "Value", "Text"), new { @class = "form-control" })
+        </div>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+    }
+</div>

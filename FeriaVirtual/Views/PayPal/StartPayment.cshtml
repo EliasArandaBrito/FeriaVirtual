@@ -1,0 +1,54 @@
+﻿@using Newtonsoft.Json
+@using FeriaVirtual.Negocio;
+
+
+@{
+    ViewBag.Title = "Pagar Venta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    // Replace 'YOUR_APP_ID' with your actual Open Exchange Rates App ID
+    var openExchangeRatesAppId = "da3bae65e19a484aa6a3ee2fae0668cf";
+
+    // Replace with the amount in CLP that you want to convert
+    var amountInCLP = (decimal)Session["Monto"];
+
+    // Fetch the exchange rate from CLP to USD using the Open Exchange Rates API
+    var exchangeRateResponse = new System.Net.WebClient().DownloadString($"https://open.er-api.com/v6/latest/CLP?app_id={openExchangeRatesAppId}");
+    var exchangeRate = Newtonsoft.Json.JsonConvert.DeserializeObject<ExchangeRateResponse>(exchangeRateResponse).Rates.USD;
+
+    // Convert the amount from CLP to USD
+    var amountInUSD = Decimal.Round(amountInCLP * exchangeRate);
+}
+
+<h2>Pagar Venta</h2>
+
+<!-- Display the amount in USD -->
+<p>Total en USD: $@amountInUSD</p>
+
+@model PayPalPayment
+
+<!-- Configuración del botón de PayPal -->
+<div id="paypal-button-container"></div>
+
+@section Scripts {
+    <script src="https://www.paypal.com/sdk/js?client-id=AR5D5xmXA1NAVzleIgBK_h58m0Sx39EPVevknC8IWWWWlt6IuV5z4wTAyudEIRRYFIaVIT1_PIIB0i0e&currency=USD" data-sdk-integration-source="button-factory"></script>
+    <script>
+        paypal.Buttons({
+            createOrder: function (data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+
+                            value: '@amountInUSD' // Precio del producto dinámico desde el modelo
+                        }
+                    }]
+                });
+            },
+            onApprove: function (data, actions) {
+                return actions.order.capture().then(function (details) {
+                    // Lógica para procesar la aprobación del pago
+                    window.location.href = '/PayPal/ConfirmPayment?paymentId=' + data.orderID + '&token=' + data.orderID + '&PayerID=' + data.payerID;
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
+}

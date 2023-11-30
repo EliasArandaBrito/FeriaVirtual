@@ -1,0 +1,98 @@
+﻿@model FeriaVirtual.Negocio.Contratos
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Agregar Contrato";
+}
+
+<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<style>
+    /* Estilos de la página */
+    body {
+        background-color: #E8F8E0; /* Fondo de la página en verde claro */
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    select {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+    }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<script>
+    // Función para configurar los datepickers
+    $(function () {
+        $("#Fechainicio").datepicker({
+            dateFormat: 'yy-mm-dd' // Formato de fecha deseado
+        });
+        $("#Fechafinalizacion").datepicker({
+            dateFormat: 'yy-mm-dd' // Formato de fecha deseado
+        });
+    });
+</script>
+
+<div style="position: absolute; top: 60px; left: 10px;">
+    <a href="@Url.Action("Index", "Contratos")" class="btn btn-sm btn-transparent" style="border: 1px solid;">Volver</a>
+</div>
+
+<div class="container">
+    <h2>Agregar Contrato</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.LabelFor(model => model.Fechainicio)
+        @Html.TextBoxFor(model => model.Fechainicio, new { @id = "Fechainicio" })
+
+        @Html.LabelFor(model => model.Fechafinalizacion)
+        @Html.TextBoxFor(model => model.Fechafinalizacion, new { @id = "Fechafinalizacion" })
+
+        @Html.HiddenFor(model => model.Tipocontrato, new { Value = "Contrato de Demanda" })
+
+        @Html.HiddenFor(model => model.Estadocontratoid, new { Value = 4 })
+
+        @Html.LabelFor(model => model.Demanda)
+        @Html.TextBoxFor(model => model.Demanda)
+
+        @Html.LabelFor(model => model.Cantidad)
+        @Html.TextBoxFor(model => model.Cantidad)
+
+
+
+        @Html.HiddenFor(model => model.Usuarioid, new { Value = (decimal)Session["UserID"] })
+
+        <button>Guardar</button>
+    }
+</div>
+
+@TempData["mensaje"]

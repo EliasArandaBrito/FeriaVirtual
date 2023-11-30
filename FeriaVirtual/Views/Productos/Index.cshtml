@@ -1,0 +1,87 @@
+﻿@using FeriaVirtual.Negocio;
+
+<!-- Agrega las metaetiquetas para hacer que la página sea responsive -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    /* Estilo para la tabla */
+    .table-container {
+        background-color: white; /* Fondo blanco para la tabla */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+@{
+    ViewBag.Title = "Listado de Productos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="position: absolute; top: 60px; left: 10px;">
+    <a href="@Url.Action("Index", "Home")" class="btn btn-sm btn-transparent" style="border: 1px solid;">Volver</a>
+</div>
+
+<div class="container">
+    <h2 class="mt-4">Listado de Productos</h2>
+
+    @{
+        List<Productos> productos = (List<Productos>)ViewBag.productos;
+    }
+
+    <div class="table-container">
+        <div class="table-responsive">
+            <table class="table table-striped mt-3">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Productor</th>
+                        <th>Gestionar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var producto in productos)
+                    {
+                        <tr>
+                            <td>@producto.Nombre</td>
+                            <td>@producto.Precio</td>
+                            <td>@producto.Stock</td>
+                            <td>@producto.Productor.Nombre</td>
+                           
+                            <td>
+                                @Html.ActionLink("Eliminar", "Delete", new { id = producto.ID }, new { onclick = "return confirm('¿Estás seguro de eliminar este producto?');" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="text-center mt-4">
+    <a href="@Url.Action("Create", "Productos")" class="btn btn-primary">Agregar</a>
+</div>
+
+@if (TempData["ProductoAgregado"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["ProductoAgregado"]
+    </div>
+}
+@if (TempData["ProductoEliminado"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ProductoEliminado"]
+    </div>
+}
+

@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Feria Virtual</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/free-vector/hand-painted-watercolor-nature-background_23-2148907361.jpg?w=996&t=st=1701288022~exp=1701288622~hmac=3c1d6e19ee9f7550e0c3fd506f42cc530afe864d2c391fe2f1e393e5aefde7a8'); /* Set the path to your background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0; /* Remove default body margin */
+            padding: 0; /* Remove default body padding */
+        }
+    </style>
+    @RenderSection("styles", required: false)
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">Feria Virtual</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <ul class="navbar-nav ml-auto">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link">Bienvenido, @User.Identity.Name</a>
+                    </li>
+                }
+            </ul>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (Session["Roles"] != null && Session["Roles"].ToString() == "transportista")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "MedioTransporte")">Medios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("MySub", "Subastas")">Mis Subastas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "Subastas")">Subastas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "Transportes")">Mis Transportes</a>
+                            </li>
+                        }
+                        if (Session["Roles"] != null && Session["Roles"].ToString() == "productor")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "Productos")">Productos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "PostulacionProductor")">Contratos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "Postulacion")">Postulaciones</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "VentasProductor")">Ventas</a>
+                            </li>
+                        }
+                        if (Session["Roles"] != null && Session["Roles"].ToString() == "cliente interno")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "VentasCliente")">Mis Ventas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("IndexClient", "Transportes")">Transportes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("IndexBuy", "VentasCliente")">Pedir Saldos</a>
+                            </li>
+
+                        }
+                        if (Session["Roles"] != null && Session["Roles"].ToString() == "cliente externo")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "Contratos")">Contratos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "VentasCliente")">Mis Ventas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("IndexClient", "Transportes")">Transportes</a>
+                            </li>
+
+
+                        }
+
+                        //Agregar los demás inicios de sesión
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("LogOut", "Auth")">Cerrar Sesión</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Login", "Auth")">Iniciar Sesión</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Maipo Grande</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+@RenderSection("Scripts", required: false)

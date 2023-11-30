@@ -1,0 +1,75 @@
+﻿@using FeriaVirtual.Negocio;
+
+<!-- Agrega las metaetiquetas para hacer que la página sea responsive -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    /* Estilo para la tabla */
+    .table-container {
+        background-color: white; /* Fondo blanco para la tabla */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<div style="position: absolute; top: 60px; left: 10px;">
+    <a href="@Url.Action("Index", "Subastas")" class="btn btn-sm btn-transparent" style="border: 1px solid;">Volver</a>
+</div>
+
+@{ ViewBag.Title = "Seleccione el Medio a Postular";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+<div class="container">
+    <h2 class="mt-4">@ViewBag.Title</h2>
+
+    @{ List<MedioTransporte> medioTransportes = (List<MedioTransporte>)ViewBag.medios; }
+
+    <div class="table-container">
+        <div class="table-responsive">
+            <table class="table table-striped mt-3">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <th>Patente</th>
+                        <th>Ancho</th>
+                        <th>Largo</th>
+                        <th>Alto</th>
+                        <th>Capacidad</th>
+                        <th>Refrigerado</th>
+                        <th>Precio</th>
+                        <th>Postular</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var medioTransporte in medioTransportes)
+                    {
+        <tr>
+            <td>@medioTransporte.Patente</td>
+            <td>@medioTransporte.Ancho</td>
+            <td>@medioTransporte.Largo</td>
+            <td>@medioTransporte.Alto</td>
+            <td>@medioTransporte.Capacidad</td>
+            <td>@medioTransporte.Refrigerado</td>
+            <td>@medioTransporte.Precio</td>
+            <td>
+                @Html.ActionLink("Postular", "Postular", new { id = medioTransporte.ID }, new { onclick = "return confirm('¿Estás seguro que desea postular este medio de transporte?');" })
+            </td>
+        </tr>}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@if (TempData["SubastaMessage"] != null)
+{
+<div class="alert alert-success">
+    @TempData["SubastaMessage"]
+</div>}

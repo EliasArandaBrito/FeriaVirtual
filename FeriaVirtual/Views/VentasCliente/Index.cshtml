@@ -1,0 +1,133 @@
+﻿@using FeriaVirtual.Negocio;
+
+<!-- Agrega las metaetiquetas para hacer que la página sea responsive -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    /* Estilo para la tabla */
+    .table-container {
+        background-color: white; /* Fondo blanco para la tabla */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+@{ ViewBag.Title = "Listado de Ventas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+<div style="position: absolute; top: 60px; left: 10px;">
+    <a href="@Url.Action("Index", "Home")" class="btn btn-sm btn-transparent" style="border: 1px solid;">Volver</a>
+</div>
+
+<div class="container">
+    <h2 class="mt-4">Listado de Ventas</h2>
+
+    @{ List<Venta> ventas = (List<Venta>)ViewBag.ventas;
+        Transporte t = new Transporte();
+        }
+
+    <div class="table-container">
+        <div class="table-responsive">
+            <table class="table table-striped mt-3">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <th>ID Venta</th>
+                        <th>Total</th>
+                        <th>Fecha Venta</th>
+                        <th>Estado</th>
+                        <th>Tipo</th>
+                        <th>Cliente</th>
+                        <th>Productor</th>
+                        <th>ID Transporte</th>
+                        <th>Cancelar</th>
+                        <th>Completar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var venta in ventas)
+                    {
+                    <tr>
+                        <td>@venta.Ventaid</td>
+                        <td>@venta.Totalventa</td>
+                        <td>@venta.Fechaventa</td>
+                        <td>
+                        @if (venta.Estadoventaid == 1)
+                        {
+                            <span class="badge badge-success">Aprobada</span>
+                        }
+                        else if (venta.Estadoventaid == 3)
+                        {
+                            <span class="badge badge-success">Completada</span>
+                        }
+                        else if (venta.Estadoventaid == 2)
+                        {
+                            <span class="badge badge-secondary">En Tránsito</span>
+                        }
+                        else if (venta.Estadoventaid == 0)
+                        {
+                            <span class="badge badge-danger">Cancelada</span>
+                        }
+                        else if (venta.Estadoventaid == 4)
+                        {
+                            <span class="badge badge-warning">Pendiente</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-secondary">Desconocido</span>
+                        }
+                        </td>
+                        <td>@venta.Tipoventa</td>
+                        @if (venta.Clienteid != null)
+                        {
+                    <td>@venta.Clienteid</td>
+ }
+                else
+                {
+                    <td>Sin Cliente</td>
+}
+                        <td>@venta.Productorid</td>
+                        @if (venta.Transporteid != null)
+                        {
+                    <td>@venta.Transporteid</td> }
+                                    else
+                                    {
+                    <td>Sin Transporte</td>
+}
+                        @if (venta.Estadoventaid != 3 && venta.Estadoventaid != 0)
+                        {
+                    <td>
+                        @Html.ActionLink("Cancelar", "Cancel", new { id = venta.Ventaid }, new { onclick = "return confirm('¿Estás seguro de cancelar esta venta? No podrá revertir este cambio');" })
+                    </td>
+ }
+                else
+                {
+                    <td>Acción No Disponible</td>
+}
+
+                        @if (venta.Estadoventaid == 2 && t.ReadByVentaId(venta.Ventaid).FirstOrDefault().EstadoTransporte == "Entregado")
+                        {
+                    <td>
+                        @Html.ActionLink("Completar", "Pay", new { id = venta.Ventaid }, new { @class = "pagar-button" })
+                    </td>
+ }
+                else
+                {
+                    <td>Acción No Disponible</td>
+}
+
+
+                    </tr>}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

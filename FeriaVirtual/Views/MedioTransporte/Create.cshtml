@@ -1,0 +1,85 @@
+﻿@model FeriaVirtual.Negocio.MedioTransporte
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Agregar Medio de Transporte";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    select {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+    }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<div style="position: absolute; top: 60px; left: 10px;">
+    <a href="@Url.Action("Index", "MedioTransporte")" class="btn btn-sm btn-transparent" style="border: 1px solid;">Volver</a>
+</div>
+<div class="container">
+    <h2>Agregar Medio de Transporte</h2>
+
+    @using (Html.BeginForm())
+    {
+    @Html.LabelFor(p => p.Patente)
+    @Html.TextBoxFor(p => p.Patente)
+
+    @Html.LabelFor(p => p.Ancho)
+    @Html.TextBoxFor(p => p.Ancho)
+
+    @Html.LabelFor(p => p.Largo)
+    @Html.TextBoxFor(p => p.Largo)
+
+    @Html.LabelFor(p => p.Alto)
+    @Html.TextBoxFor(p => p.Alto)
+
+    @Html.LabelFor(p => p.Capacidad)
+    @Html.TextBoxFor(p => p.Capacidad)
+
+    @Html.LabelFor(p => p.Refrigerado)
+    @Html.DropDownListFor(p => p.Refrigerado, new SelectList(
+    new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Con refrigeración", Value = "1" },
+        new SelectListItem { Text = "Sin refrigeración", Value = "0" }
+    }, "Value", "Text"), new { @class = "form-control" })
+
+    @Html.LabelFor(p => p.Precio)
+    @Html.TextBoxFor(p => p.Precio)
+
+    @Html.HiddenFor(p => p.IDTransportista, new { Value = (decimal)Session["UserID"] })
+
+    <button>Guardar</button>
+    }
+</div>

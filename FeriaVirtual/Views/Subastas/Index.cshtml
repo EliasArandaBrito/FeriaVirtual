@@ -1,0 +1,78 @@
+﻿@using FeriaVirtual.Negocio;
+
+<!-- Agrega las metaetiquetas para hacer que la página sea responsive -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    /* Estilo para la tabla */
+    .table-container {
+        background-color: white; /* Fondo blanco para la tabla */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+@{ ViewBag.Title = "Listado de Subastas Publicadas";
+    Layout = "~/Views/Shared/_Layout.cshtml";}
+
+<div style="position: absolute; top: 60px; left: 10px;">
+    <a href="@Url.Action("Index", "Home")" class="btn btn-sm btn-transparent" style="border: 1px solid;">Volver</a>
+</div>
+
+<div class="container">
+    <h2 class="mt-4">@ViewBag.Title</h2>
+
+    @{ List<Subasta> subastas = (List<Subasta>)ViewBag.subastas; }
+
+    <div class="table-container">
+        <div class="table-responsive">
+            <table class="table table-striped mt-3">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <th>Fecha de Inicio</th>
+                        <th>Fecha de Término</th>
+                        <th>Ancho Requerido</th>
+                        <th>Alto Requerido</th>
+                        <th>Largo Requerido</th>
+                        <th>Capacidad Requerida</th>
+                        <th>Refrigeración</th>
+                        <th>Postular</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var subasta in subastas)
+                    {
+                    <tr>
+                        <td>@subasta.Fechainicio</td>
+                        <td>@subasta.Fechatermino</td>
+                        <td>@subasta.Ancho_min</td>
+                        <td>@subasta.Alto_min</td>
+                        <td>@subasta.Largo_min</td>
+                        <td>@subasta.Capacidad</td>
+                        <td>
+                        @if (subasta.Refrigerado == 0)
+                        {
+                            <span class="badge badge-danger">No</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-success">Si</span>
+                        }
+                        </td>
+                        <td>
+                            @Html.ActionLink("Postular", "Create", new { id = subasta.Subastaid }, new { @class = "crearsub-button" })
+                        </td>
+                    </tr>
+}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+﻿@using FeriaVirtual.Negocio;
+
+<!-- Agrega las metaetiquetas para hacer que la página sea responsive -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    /* Estilo para la tabla */
+    .table-container {
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<div style="position: absolute; top: 60px; left: 10px;">
+    <a href="@Url.Action("Index", "Home")" class="btn btn-sm btn-transparent" style="border: 1px solid;">Volver</a>
+</div>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Listado de Medios de Transporte";
+}
+
+<div class="container">
+    <h2 class="mt-4">Listado de Medios de Transporte</h2>
+
+    @{
+        List<MedioTransporte> medioTransportes = (List<MedioTransporte>)ViewBag.MedioTransporte;
+    }
+
+    <div class="table-container">
+        <div class="table-responsive">
+            <table class="table table-striped mt-3">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <th>Patente</th>
+                        <th>Ancho</th>
+                        <th>Largo</th>
+                        <th>Alto</th>
+                        <th>Capacidad</th>
+                        <th>Refrigerado</th>
+                        <th>Precio</th>
+                        <th>Gestionar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var medioTransporte in medioTransportes)
+                    {
+                        <tr>
+                            <td>@medioTransporte.Patente</td>
+                            <td>@medioTransporte.Ancho</td>
+                            <td>@medioTransporte.Largo</td>
+                            <td>@medioTransporte.Alto</td>
+                            <td>@medioTransporte.Capacidad</td>
+                            <td>@medioTransporte.Refrigerado</td>
+                            <td>@medioTransporte.Precio</td>
+                            <td>
+                                @Html.ActionLink("Eliminar", "Delete", new { id = medioTransporte.ID }, new { onclick = "return confirm('¿Estás seguro de eliminar este medio de transporte?');" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mt-4">
+    <a href="@Url.Action("Create", "MedioTransporte")" class="btn btn-primary">Agregar</a>
+</div>
+
+@if (TempData["MedioTransporteAgregado"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["MedioTransporteAgregado"]
+    </div>
+}
+@if (TempData["MedioTransporteEliminado"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["MedioTransporteEliminado"]
+    </div>
+}

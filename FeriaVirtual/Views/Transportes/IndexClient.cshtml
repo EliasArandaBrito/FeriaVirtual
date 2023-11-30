@@ -1,0 +1,71 @@
+﻿@using FeriaVirtual.Negocio;
+
+<!-- Agrega las metaetiquetas para hacer que la página sea responsive -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    body {
+        background-color: #E8F8E0; /* Fondo de la página en verde claro */
+        font-family: Arial, sans-serif;
+    }
+
+    /* Estilo para la tabla */
+    .table-container {
+        background-color: white; /* Fondo blanco para la tabla */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+@{ ViewBag.Title = "Listado de Transportes";
+    Layout = "~/Views/Shared/_Layout.cshtml";}
+
+<div style="position: absolute; top: 60px; left: 10px;">
+    <a href="@Url.Action("Index", "Home")" class="btn btn-sm btn-transparent" style="border: 1px solid;">Volver</a>
+</div>
+
+<div class="container">
+    <h2 class="mt-4">Listado de Transportes</h2>
+
+    @{ List<Transporte> transportes = (List<Transporte>)ViewBag.transportes;
+        MedioTransporte m = new MedioTransporte();
+        Venta v = new Venta();}
+
+    <div class="table-container">
+        <div class="table-responsive">
+            <table class="table table-striped mt-3">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <th>ID Transporte</th>
+                        <th>Fecha Transporte</th>
+                        <th>Origen</th>
+                        <th>Destino</th>
+                        <th>Medio</th>
+                        <th>Tipo</th>
+                        <th>Estado</th>
+                        <th>ID Venta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var transporte in transportes)
+                    {
+        <tr>
+            <td>@transporte.TransporteID</td>
+            <td>@transporte.FechaTransporte</td>
+            <td>@transporte.Origen</td>
+            <td>@transporte.Destino</td>
+            <td>@m.ReadByMedioId(transporte.MedioID).FirstOrDefault().Patente</td>
+            <td>@transporte.TipoTransporte</td>
+            <td>@transporte.EstadoTransporte</td>
+            <td>
+                @v.ReadByTransporteId(transporte.TransporteID).FirstOrDefault().Ventaid
+            </td>
+        </tr>}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

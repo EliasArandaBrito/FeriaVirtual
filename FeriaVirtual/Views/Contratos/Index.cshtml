@@ -1,0 +1,128 @@
+﻿@using FeriaVirtual.Negocio;
+
+<!-- Agrega las metaetiquetas para hacer que la página sea responsive -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    /* Estilo para la tabla */
+    .table-container {
+        background-color: white; /* Fondo blanco para la tabla */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<div style="position: absolute; top: 60px; left: 10px;">
+    <a href="@Url.Action("Index", "Home")" class="btn btn-sm btn-transparent" style="border: 1px solid;">Volver</a>
+</div>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Listado de Contratos";
+}
+
+<div class="container">
+    <h2 class="mt-4">Listado de Contratos</h2>
+
+    @{
+        List<Contratos> contratos = (List<Contratos>)ViewBag.Contratos;
+    }
+
+    <div class="table-container">
+        <div class="table-responsive">
+            <table class="table table-striped mt-3">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <th>Fecha de Inicio</th>
+                        <th>Fecha de Finalización</th>
+                        <th>Tipo de Contrato</th>
+                        <th>Estado de Contrato</th>
+                        <th>Demanda</th>
+                        <th>Cantidad</th>
+                        <th>Usuario ID</th>
+                        <th>Publicado</th>
+                        <th>Eliminar</th>
+                        <th>Gestionar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var contrato in contratos)
+                    {
+                        <tr>
+                            <td>@contrato.Fechainicio</td>
+                            <td>@contrato.Fechafinalizacion</td>
+                            <td>@contrato.Tipocontrato</td>
+                            <td>
+                                @if (contrato.Estadocontratoid == 1)
+                                {
+                                    <span class="badge badge-success">Vigente</span>
+                                }
+                                else if (contrato.Estadocontratoid == 2)
+                                {
+                                    <span class="badge badge-success">Completado</span>
+                                }
+                                else if (contrato.Estadocontratoid == 3)
+                                {
+                                    <span class="badge badge-danger">Terminado</span>
+                                }
+                                else if (contrato.Estadocontratoid == 0)
+                                {
+                                    <span class="badge badge-danger">Vencido</span>
+                                }
+                                else if (contrato.Estadocontratoid == 4)
+                                {
+                                    <span class="badge badge-warning">Pendiente</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-secondary">Desconocido</span>
+                                }
+                            </td>
+                            <td>@contrato.Demanda</td>
+                            <td>@contrato.Cantidad</td>
+                            <td>@contrato.Usuarioid</td>
+                            <td>@contrato.Published</td>
+                            <td>
+                                @Html.ActionLink("Eliminar", "Delete", new { id = contrato.Contratoid }, new { onclick = "return confirm('¿Estás seguro de eliminar este contrato?');" })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Ver Postulaciones", "Postulaciones", new { id = contrato.Contratoid }, new { @class = "postulaciones-button" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mt-4">
+    <a href="@Url.Action("Create", "Contratos")" class="btn btn-primary">Agregar</a>
+</div>
+
+@if (TempData["ContratoAgregado"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["ContratoAgregado"]
+    </div>
+}
+@if (TempData["ContratoEliminado"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ContratoEliminado"]
+    </div>
+}
+
+@if (TempData["PostulacionMensaje"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["PostulacionEliminada"]
+    </div>
+}
