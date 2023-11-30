@@ -43,17 +43,17 @@ namespace FeriaVirtual.Controllers
                 {
                     if (postulacion.Save())
                     {
-                        TempData["Mensaje"] = "Postulación agregada exitosamente";
+                        TempData["PostulacionMessage"] = "Postulación agregada exitosamente";
                         return RedirectToAction("Index");
                     }
                     else
                     {
-                        TempData["Mensaje"] = "Error al agregar la postulación.";
+                        TempData["PostulacionMessage"] = "Error al agregar la postulación.";
                     }
                 }
                 else
                 {
-                    TempData["Mensaje"] = "El modelo de postulación no es válido.";
+                    TempData["PostulacionMessage"] = "El modelo de postulación no es válido.";
                 }
 
                 return View(postulacion);

@@ -44,7 +44,6 @@
                         <th>Precio</th>
                         <th>Stock</th>
                         <th>Productor</th>
-                        <th>Gestionar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,9 +55,6 @@
                             <td>@producto.Stock</td>
                             <td>@producto.Productor.Nombre</td>
                            
-                            <td>
-                                @Html.ActionLink("Eliminar", "Delete", new { id = producto.ID }, new { onclick = "return confirm('¿Estás seguro de eliminar este producto?');" })
-                            </td>
                         </tr>
                     }
                 </tbody>

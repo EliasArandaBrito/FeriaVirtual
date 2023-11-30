@@ -46,7 +46,6 @@
                         <th>Capacidad</th>
                         <th>Refrigerado</th>
                         <th>Precio</th>
-                        <th>Gestionar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,11 +57,18 @@
                             <td>@medioTransporte.Largo</td>
                             <td>@medioTransporte.Alto</td>
                             <td>@medioTransporte.Capacidad</td>
-                            <td>@medioTransporte.Refrigerado</td>
-                            <td>@medioTransporte.Precio</td>
                             <td>
-                                @Html.ActionLink("Eliminar", "Delete", new { id = medioTransporte.ID }, new { onclick = "return confirm('¿Estás seguro de eliminar este medio de transporte?');" })
+                                @if (medioTransporte.Refrigerado == 1)
+                                {
+                                    <span class="badge badge-success">Si</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-secondary">No</span>
+                                }
                             </td>
+                            <td>@medioTransporte.Precio</td>
+                            
                         </tr>
                     }
                 </tbody>

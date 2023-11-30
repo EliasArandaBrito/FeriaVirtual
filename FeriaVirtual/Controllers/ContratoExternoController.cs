@@ -136,11 +136,11 @@ namespace FeriaVirtual.Controllers
 
             if (postulacion.Select(id, 1))
             {
-                TempData["PostulacionMensaje"] = "Contrato eliminado exitosamente";
+                TempData["PostulacionMessage"] = "Postulación Seleccionada";
             }
             else
             {
-                TempData["PostulacionMensaje"] = "Error al eliminar el contrato.";
+                TempData["PostulacionMessage"] = "Error al seleccionar";
             }
 
             return RedirectToAction("Index");

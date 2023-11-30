@@ -48,7 +48,6 @@
                         <th>Cantidad</th>
                         <th>Usuario ID</th>
                         <th>Publicado</th>
-                        <th>Eliminar</th>
                         <th>Gestionar</th>
                     </tr>
                 </thead>
@@ -88,10 +87,17 @@
                             <td>@contrato.Demanda</td>
                             <td>@contrato.Cantidad</td>
                             <td>@contrato.Usuarioid</td>
-                            <td>@contrato.Published</td>
                             <td>
-                                @Html.ActionLink("Eliminar", "Delete", new { id = contrato.Contratoid }, new { onclick = "return confirm('¿Estás seguro de eliminar este contrato?');" })
+                                @if (contrato.Published == 1)
+                                {
+                                    <span class="badge badge-success">Si</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-secondary">No</span>
+                                }
                             </td>
+                            
                             <td>
                                 @Html.ActionLink("Ver Postulaciones", "Postulaciones", new { id = contrato.Contratoid }, new { @class = "postulaciones-button" })
                             </td>
@@ -120,9 +126,9 @@
     </div>
 }
 
-@if (TempData["PostulacionMensaje"] != null)
+@if (TempData["PostulacionMessage"] != null)
 {
     <div class="alert alert-danger">
-        @TempData["PostulacionEliminada"]
+        @TempData["PostulacionMessage"]
     </div>
 }

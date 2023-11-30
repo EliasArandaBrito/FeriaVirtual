@@ -78,16 +78,10 @@
     <!-- Si se requiere agregar un enlace para crear nuevas postulaciones, se puede colocar aquí -->
 </div>
 
-@if (TempData["PostulacionAgregada"] != null)
+@if (TempData["PostulacionMessage"] != null)
 {
     <div class="alert alert-success">
-        @TempData["PostulacionAgregada"]
-    </div>
-}
-@if (TempData["PostulacionEliminada"] != null)
-{
-    <div class="alert alert-danger">
-        @TempData["PostulacionEliminada"]
+        @TempData["PostulacionMessage"]
     </div>
 }
 
